@@ -1,0 +1,8 @@
+[gd_resource type="ShaderMaterial" load_steps=2 format=3 uid="uid://dxptuc3p7h6kt"]
+
+[ext_resource type="Shader" path="res://shaders/poly_noise.gdshader" id="1_g5maw"]
+
+[resource]
+shader = ExtResource("1_g5maw")
+shader_parameter/time_scale = 0.003
+shader_parameter/screen_size = Vector2(1280, 400)

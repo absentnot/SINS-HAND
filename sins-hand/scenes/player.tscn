@@ -1,8 +1,9 @@
-[gd_scene load_steps=9 format=3 uid="uid://bgty0g4u5vpow"]
+[gd_scene load_steps=11 format=3 uid="uid://bgty0g4u5vpow"]
 
 [ext_resource type="Script" path="res://player.gd" id="1_oqbyh"]
 [ext_resource type="PackedScene" uid="uid://dhxgiti4485us" path="res://scenes/SIN.tscn" id="2_rrvcv"]
 [ext_resource type="Texture2D" uid="uid://dalpole5wxuoc" path="res://assets/shadow.png" id="3_f0fnf"]
+[ext_resource type="Material" uid="uid://cb3v5k0c5r8ui" path="res://shaders/OutlineMaterial.tres" id="3_okq8a"]
 
 [sub_resource type="Curve" id="Curve_x36ei"]
 _data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.78, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
@@ -32,12 +33,17 @@ scale_max = 0.3
 scale_curve = SubResource("CurveTexture_fpj4k")
 alpha_curve = SubResource("CurveTexture_fmyu2")
 
-[node name="Player" type="Node2D"]
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_fejgy"]
+radius = 23.0
+height = 66.0
+
+[node name="Player" type="CharacterBody2D"]
 texture_filter = 1
 script = ExtResource("1_oqbyh")
 
 [node name="SIN" parent="." instance=ExtResource("2_rrvcv")]
 unique_name_in_owner = true
+material = ExtResource("3_okq8a")
 
 [node name="DustParticles" type="GPUParticles2D" parent="."]
 unique_name_in_owner = true
@@ -51,8 +57,17 @@ lifetime = 0.6
 
 [node name="Shadow" type="Sprite2D" parent="."]
 unique_name_in_owner = true
-modulate = Color(0.1863, 0.2421, 0.27, 0.380392)
+modulate = Color(0, 0, 0, 0.109804)
 z_index = -6
 position = Vector2(-5.96046e-08, 61)
 scale = Vector2(0.528164, 0.197754)
 texture = ExtResource("3_f0fnf")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, 7)
+shape = SubResource("CapsuleShape2D_fejgy")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position_smoothing_enabled = true
+drag_horizontal_enabled = true
+drag_vertical_enabled = true

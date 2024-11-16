@@ -1,0 +1,95 @@
+[gd_scene load_steps=7 format=3 uid="uid://mnjnk0imid2f"]
+
+[ext_resource type="Material" uid="uid://cb3v5k0c5r8ui" path="res://shaders/OutlineMaterial.tres" id="1_aur5r"]
+[ext_resource type="PackedScene" uid="uid://bgty0g4u5vpow" path="res://scenes/player.tscn" id="1_scwxu"]
+[ext_resource type="Material" uid="uid://8pqvsik5eyos" path="res://shaders/reflect_mat.tres" id="2_nf1bf"]
+[ext_resource type="Material" uid="uid://c761gdt38jaw2" path="res://shaders/player_reflect_mat.tres" id="4_vybtq"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_2reb4"]
+size = Vector2(284, 3460.5)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_m44oo"]
+size = Vector2(3835, 278)
+
+[node name="Void" type="Node2D"]
+
+[node name="ColorRect" type="ColorRect" parent="."]
+z_index = -99
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -1841.0
+offset_top = -2028.0
+offset_right = 1999.0
+offset_bottom = 1304.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 1)
+
+[node name="CanvasLayer2" type="CanvasLayer" parent="."]
+layer = -1
+visible = false
+
+[node name="ColorRect" type="ColorRect" parent="CanvasLayer2"]
+material = ExtResource("1_aur5r")
+offset_left = -1840.0
+offset_top = -1181.0
+offset_right = 1999.0
+offset_bottom = 1281.0
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+layer = 0
+visible = false
+
+[node name="ColorRect2" type="ColorRect" parent="CanvasLayer"]
+material = ExtResource("2_nf1bf")
+custom_minimum_size = Vector2(100, 100)
+offset_left = -1584.0
+offset_top = -871.0
+offset_right = 1734.0
+offset_bottom = 967.0
+
+[node name="Wall" type="StaticBody2D" parent="."]
+position = Vector2(-1841, -996)
+
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="Wall"]
+position = Vector2(3699, 941.25)
+shape = SubResource("RectangleShape2D_2reb4")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Wall"]
+position = Vector2(132, 723.5)
+shape = SubResource("RectangleShape2D_2reb4")
+
+[node name="CollisionShape2D4" type="CollisionShape2D" parent="Wall"]
+position = Vector2(1931, -866)
+shape = SubResource("RectangleShape2D_m44oo")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="Wall"]
+position = Vector2(1941, 2122)
+shape = SubResource("RectangleShape2D_m44oo")
+
+[node name="Player" parent="." instance=ExtResource("1_scwxu")]
+position = Vector2(0, 603)
+
+[node name="SubViewportContainer" type="SubViewportContainer" parent="Player"]
+z_index = -5
+material = ExtResource("4_vybtq")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -208.0
+offset_top = -219.0
+offset_right = 304.0
+offset_bottom = 293.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(100, 0)
+
+[node name="SubViewport" type="SubViewport" parent="Player/SubViewportContainer"]
+transparent_bg = true
+handle_input_locally = false
+render_target_update_mode = 4
+
+[node name="Player" parent="Player/SubViewportContainer/SubViewport" instance=ExtResource("1_scwxu")]
+position = Vector2(250, 270)
+reflection = true

@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://bi6qwjfqobwe6"]
 
-[ext_resource type="Texture2D" uid="uid://dnesdaq57b5kb" path="res://assets/HUD-BORDER-SMALL.png" id="1_atgfe"]
+[ext_resource type="Texture2D" uid="uid://dy7jysg8sg3lh" path="res://assets/HUD-BORDER-MED.png" id="1_wso08"]
 
 [node name="HUD" type="Control"]
 texture_filter = 1
@@ -21,4 +21,4 @@ grow_vertical = 2
 
 [node name="Border" type="TextureRect" parent="OneViewCenterContainer"]
 layout_mode = 2
-texture = ExtResource("1_atgfe")
+texture = ExtResource("1_wso08")

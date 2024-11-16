@@ -1,0 +1,24 @@
+[gd_scene load_steps=4 format=3 uid="uid://bthsj0yju4kcr"]
+
+[ext_resource type="Texture2D" uid="uid://dess575rq73em" path="res://assets/limbo.png" id="1_p5nng"]
+[ext_resource type="PackedScene" uid="uid://bgty0g4u5vpow" path="res://scenes/player.tscn" id="2_1yxpv"]
+[ext_resource type="PackedScene" uid="uid://mnjnk0imid2f" path="res://scenes/void.tscn" id="3_t73j8"]
+
+[node name="PlayerView" type="Node2D"]
+
+[node name="Limbo" type="Sprite2D" parent="."]
+visible = false
+z_index = -10
+position = Vector2(-1378, -357)
+scale = Vector2(4.92137, 5.01664)
+texture = ExtResource("1_p5nng")
+
+[node name="Player" parent="." instance=ExtResource("2_1yxpv")]
+scale = Vector2(0.8, 0.8)
+
+[node name="Camera2D2" type="Camera2D" parent="Player"]
+position_smoothing_enabled = true
+drag_horizontal_enabled = true
+drag_vertical_enabled = true
+
+[node name="Void" parent="." instance=ExtResource("3_t73j8")]

@@ -1,8 +1,52 @@
-[gd_scene load_steps=2 format=3 uid="uid://bxl0cph6oogti"]
+[gd_scene load_steps=6 format=3 uid="uid://bxl0cph6oogti"]
 
-[ext_resource type="PackedScene" uid="uid://bgty0g4u5vpow" path="res://scenes/player.tscn" id="1_8xjvn"]
+[ext_resource type="Material" uid="uid://tx5m7yl7kjgo" path="res://shaders/starryMat.tres" id="1_j1jec"]
+[ext_resource type="Material" uid="uid://dxptuc3p7h6kt" path="res://shaders/poly_bg_mat.tres" id="2_85s3n"]
+[ext_resource type="PackedScene" uid="uid://bi6qwjfqobwe6" path="res://scenes/HUD.tscn" id="2_kg8bw"]
+[ext_resource type="Texture2D" uid="uid://dvau6hipvkxjd" path="res://assets/HUD-BORDER-SMALL-BG.png" id="3_7j55n"]
+[ext_resource type="PackedScene" uid="uid://mnjnk0imid2f" path="res://scenes/void.tscn" id="4_f7v1d"]
 
 [node name="Main" type="Node2D"]
 
-[node name="Player" parent="." instance=ExtResource("1_8xjvn")]
-position = Vector2(501, 344)
+[node name="CRT" type="ColorRect" parent="."]
+z_index = 99
+material = ExtResource("1_j1jec")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = 1280.0
+offset_bottom = 720.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="POLYNOISE" type="TextureRect" parent="."]
+material = ExtResource("2_85s3n")
+offset_right = 1280.0
+offset_bottom = 720.0
+texture = ExtResource("3_7j55n")
+
+[node name="CenterContainer" type="CenterContainer" parent="."]
+custom_minimum_size = Vector2(1280, 720)
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = 1280.0
+offset_bottom = 720.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="SubViewportContainer" type="SubViewportContainer" parent="CenterContainer"]
+layout_mode = 2
+
+[node name="MainViewport" type="SubViewport" parent="CenterContainer/SubViewportContainer"]
+handle_input_locally = false
+size = Vector2i(710, 615)
+render_target_update_mode = 4
+
+[node name="Void" parent="CenterContainer/SubViewportContainer/MainViewport" instance=ExtResource("4_f7v1d")]
+position = Vector2(569, 366)
+
+[node name="HUD" type="CanvasLayer" parent="."]
+layer = 10
+
+[node name="HUD" parent="HUD" instance=ExtResource("2_kg8bw")]

@@ -1,0 +1,22 @@
+[gd_resource type="ShaderMaterial" load_steps=6 format=3 uid="uid://cb3v5k0c5r8ui"]
+
+[ext_resource type="Shader" uid="uid://bgfn4172i5him" path="res://shaders/noiseColorMat-scale.tres" id="1_hi8c0"]
+
+[sub_resource type="Gradient" id="Gradient_mcrof"]
+offsets = PackedFloat32Array(0, 0.5, 1)
+colors = PackedColorArray(0, 0, 0, 1, 0.0605303, 0.0605303, 0.0605303, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_n1yfn"]
+gradient = SubResource("Gradient_mcrof")
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_v68jh"]
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_5gcfu"]
+noise = SubResource("FastNoiseLite_v68jh")
+
+[resource]
+shader = ExtResource("1_hi8c0")
+shader_parameter/scaleAmplitude = 0.0
+shader_parameter/timeScale = 0.05
+shader_parameter/noise = SubResource("NoiseTexture2D_5gcfu")
+shader_parameter/gradientColor = SubResource("GradientTexture1D_n1yfn")

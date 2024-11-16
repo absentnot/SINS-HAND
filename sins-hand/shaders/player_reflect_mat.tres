@@ -1,0 +1,30 @@
+[gd_resource type="ShaderMaterial" load_steps=6 format=3 uid="uid://c761gdt38jaw2"]
+
+[ext_resource type="Shader" path="res://shaders/reflect.gdshader" id="1_xlnfe"]
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_ojfn1"]
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_v76fe"]
+noise = SubResource("FastNoiseLite_ojfn1")
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_s8nug"]
+fractal_octaves = 3
+fractal_lacunarity = 4.0
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_vck3r"]
+seamless = true
+noise = SubResource("FastNoiseLite_s8nug")
+
+[resource]
+shader = ExtResource("1_xlnfe")
+shader_parameter/level = 0.473
+shader_parameter/water_albedo = Color(0, 0, 0, 0)
+shader_parameter/water_opacity = 0.0
+shader_parameter/water_speed = 0.11
+shader_parameter/wave_distortion = 0.015
+shader_parameter/wave_multiplyer = 7
+shader_parameter/water_texture_on = true
+shader_parameter/reflection_X_offset = 0.0
+shader_parameter/reflection_Y_offset = 0.015
+shader_parameter/noise_texture = SubResource("NoiseTexture2D_v76fe")
+shader_parameter/noise_texture2 = SubResource("NoiseTexture2D_vck3r")
