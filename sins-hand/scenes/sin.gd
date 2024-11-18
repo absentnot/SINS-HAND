@@ -20,7 +20,7 @@ func _set_direction(value : float):
 	direction = value
 
 	var angle = wrapf(direction - HALF_PI, 0.0, TAU)
-	print(angle)
+	#print(angle)
 	if angle < 1.0 or angle >= 4.71:
 		#print(angle)
 		%HornSideBaseSpriteL.scale.x = -1
@@ -31,7 +31,7 @@ func _set_direction(value : float):
 			%HornSideBaseSpriteL.scale.x = 1
 			%HornSideTipSpriteL.scale.x = 1
 	elif angle < 1.75:
-		print("FLIP")
+		#print("FLIP")
 		%HornSideBaseSpriteL.scale.x = 1
 		%HornSideTipSpriteL.scale.x = 1
 		%HornSideBaseSpriteR.scale.x = -1
@@ -83,7 +83,7 @@ func _set_direction(value : float):
 		%HornTopSpriteR.z_index = 4
 		
 	
-	print(%EyeSpriteR.scale)
+	#print(%EyeSpriteR.scale)
 	if angle > 3.1 or angle < 0.5:
 		%MouthSprite.z_index = 3
 		#if angle > 6.7 or angle < 0.1:
