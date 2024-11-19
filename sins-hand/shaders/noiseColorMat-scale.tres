@@ -37,7 +37,7 @@ vec3 get_gradient_color(float position){
 
 void fragment() {
 	vec4 noiseTexture = texture(noise, vec2(UV.x * noiseFloat(UV) + sin(mod(TIME * timeScale, 100.0)), UV.y * noiseFloat(UV) + cos(mod(TIME * timeScale, 100.0))));
-		
+
 	if(noiseTexture.x < 0.4){
 		COLOR.rgb *=  get_gradient_color(mod(mod(TIME * timeScale, 1.1) * 1.25, 0.75));
 	}
@@ -47,7 +47,7 @@ void fragment() {
 	else{
 		COLOR.rgb *=  get_gradient_color(mod(mod(TIME * timeScale, 1.1) * 1.75, 1.25));
 	}
-	
+
 }
 
 //void light() {

@@ -1,0 +1,10 @@
+[gd_scene load_steps=2 format=3 uid="uid://cpwk77xj2ntjn"]
+
+[ext_resource type="Script" path="res://scenes/arm.gd" id="1_v7f64"]
+
+[node name="ArmLine" type="Line2D"]
+z_index = -1
+default_color = Color(0.717647, 0.717647, 0.717647, 1)
+script = ExtResource("1_v7f64")
+
+[node name="RigidBody2D" type="RigidBody2D" parent="."]

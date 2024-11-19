@@ -11,6 +11,8 @@ var canStep = true
 var alternate_foot = false
 
 func _process(delta):
+	if !reflection:
+		print(global_position)
 	var input = Input.get_vector("left", "right", "up", "down")
 	var is_sprinting : bool = Input.is_action_pressed("sprint")
 	

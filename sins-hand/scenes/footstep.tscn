@@ -1,0 +1,16 @@
+[gd_scene load_steps=3 format=3 uid="uid://krvvtrusuqtw"]
+
+[ext_resource type="Texture2D" uid="uid://cmg7cuehsrgrh" path="res://assets/footprint.png" id="1_jmbsj"]
+[ext_resource type="Script" path="res://scripts/footstep.gd" id="2_hun2d"]
+
+[node name="footstep" type="Sprite2D"]
+z_index = -6
+texture_filter = 1
+texture = ExtResource("1_jmbsj")
+offset = Vector2(0, 5)
+script = ExtResource("2_hun2d")
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 2.0
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
