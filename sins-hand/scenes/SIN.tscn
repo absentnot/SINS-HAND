@@ -329,7 +329,6 @@ texture = ExtResource("1_resmx")
 
 [node name="FootSpriteL" type="Sprite2D" parent="Visual"]
 unique_name_in_owner = true
-visible = false
 z_index = -4
 position = Vector2(-9.11895, 40.3272)
 rotation = -3.14159
@@ -339,7 +338,6 @@ offset = Vector2(7.5, 16)
 
 [node name="FootSpriteR" type="Sprite2D" parent="Visual"]
 unique_name_in_owner = true
-visible = false
 z_index = -4
 position = Vector2(9.11891, 39.6728)
 texture = ExtResource("2_yqbfd")
@@ -355,7 +353,7 @@ scale = Vector2(1, -1)
 [node name="MouthSprite" type="Sprite2D" parent="Visual/FaceSpriteGroup"]
 unique_name_in_owner = true
 z_index = 3
-position = Vector2(-18.9524, -74.3346)
+position = Vector2(-18.9524, -73.2704)
 texture = ExtResource("3_fms1n")
 offset = Vector2(0, 10)
 
@@ -363,7 +361,7 @@ offset = Vector2(0, 10)
 unique_name_in_owner = true
 modulate = Color(0.207843, 0.207843, 0.207843, 1)
 z_index = 3
-position = Vector2(-7.91287, -74.2959)
+position = Vector2(-7.91287, -73.1685)
 rotation = -3.14159
 scale = Vector2(1, -1)
 texture = ExtResource("4_u02gq")
@@ -373,16 +371,15 @@ offset = Vector2(-2, 4)
 unique_name_in_owner = true
 modulate = Color(0.992157, 0, 0.572549, 1)
 z_index = 3
-position = Vector2(-30.0875, -74.2959)
+position = Vector2(-30.0875, -73.1684)
 texture = ExtResource("4_u02gq")
 offset = Vector2(-2, 4)
 
 [node name="HornTopSpriteL" type="Sprite2D" parent="Visual/FaceSpriteGroup"]
 unique_name_in_owner = true
-visible = false
 z_index = 4
 y_sort_enabled = true
-position = Vector2(-7.00019, -75.9502)
+position = Vector2(-7.00019, -75.0708)
 rotation = 3.14159
 scale = Vector2(0.99998, -0.999978)
 texture = ExtResource("5_w1vhp")
@@ -390,18 +387,16 @@ offset = Vector2(0, -26)
 
 [node name="HornTopSpriteR" type="Sprite2D" parent="Visual/FaceSpriteGroup"]
 unique_name_in_owner = true
-visible = false
 z_index = 3
 y_sort_enabled = true
-position = Vector2(-31.0002, -75.9501)
+position = Vector2(-31.0002, -75.0707)
 texture = ExtResource("5_w1vhp")
 offset = Vector2(0, -26)
 
 [node name="HornSideGroupL" type="Node2D" parent="Visual/FaceSpriteGroup"]
 unique_name_in_owner = true
-visible = false
 z_index = 3
-position = Vector2(7.99981, -75.2301)
+position = Vector2(7.99981, -74.5762)
 rotation = -3.14159
 scale = Vector2(1, -1)
 
@@ -424,9 +419,8 @@ texture = ExtResource("7_bls4j")
 
 [node name="HornSideGroupR" type="Node2D" parent="Visual/FaceSpriteGroup"]
 unique_name_in_owner = true
-visible = false
 z_index = 1
-position = Vector2(-46.0002, -75.23)
+position = Vector2(-46.0002, -74.5761)
 
 [node name="HornSideBaseSpriteR" type="Sprite2D" parent="Visual/FaceSpriteGroup/HornSideGroupR"]
 unique_name_in_owner = true
@@ -442,7 +436,6 @@ texture = ExtResource("7_bls4j")
 
 [node name="LegL" type="Line2D" parent="Visual"]
 unique_name_in_owner = true
-visible = false
 z_index = -2
 position = Vector2(-9.11895, 40.3272)
 rotation = -3.14159
@@ -454,7 +447,6 @@ script = ExtResource("8_p8qnk")
 
 [node name="LegR" type="Line2D" parent="Visual"]
 unique_name_in_owner = true
-visible = false
 z_index = -2
 position = Vector2(9.11891, 39.6728)
 rotation = 3.14159
@@ -466,12 +458,10 @@ script = ExtResource("8_p8qnk")
 
 [node name="ArmL" parent="Visual" instance=ExtResource("9_2wy5m")]
 unique_name_in_owner = true
-visible = false
 position = Vector2(-19.5462, -14.914)
 
 [node name="ArmR" parent="Visual" instance=ExtResource("9_2wy5m")]
 unique_name_in_owner = true
-visible = false
 position = Vector2(21.6353, -15.4351)
 rotation = -3.14159
 scale = Vector2(1, -1)
@@ -509,7 +499,7 @@ update_scale = false
 
 [node name="HornsSideAnchor" type="Node2D" parent="Rig"]
 unique_name_in_owner = true
-position = Vector2(0, -153.009)
+position = Vector2(0, -87.6186)
 rotation = 4.71239
 
 [node name="HornSideL" type="RemoteTransform2D" parent="Rig/HornsSideAnchor"]
@@ -528,7 +518,7 @@ update_scale = false
 
 [node name="HornsTopAnchor" type="Node2D" parent="Rig"]
 unique_name_in_owner = true
-position = Vector2(0, -195.021)
+position = Vector2(0, -107.08)
 rotation = 4.71239
 
 [node name="HornTopL" type="RemoteTransform2D" parent="Rig/HornsTopAnchor"]
