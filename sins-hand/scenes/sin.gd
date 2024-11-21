@@ -114,18 +114,18 @@ func _set_direction(value : float):
 	
 	
 	if angle > 5.0 or angle < 2.0:
-		$Visual/ArmL/ArmLine.scale.x = -1.0
+		#$Visual/ArmL/ArmLine.scale.x = -1.0
 		%ArmL.z_index = -2
 	else:
-		$Visual/ArmL/ArmLine.scale.x = 1.0
+		#$Visual/ArmL/ArmLine.scale.x = 1.0
 		%ArmL.z_index = 0
 		
 	if angle > 4.0 or angle < 1.0:
-		$Visual/ArmR/ArmLine.scale.x = -1.0
-		$Visual/ArmR/ArmLine.z_index = 0
+		#$Visual/ArmR/ArmLine.scale.x = -1.0
+		%ArmR.z_index = 0
 	else:
-		$Visual/ArmR/ArmLine.scale.x = 1.0
-		$Visual/ArmR/ArmLine.z_index = -2
+		#%ArmR.scale.x = 1.0
+		%ArmR.z_index = -2
 		
 	for anchor in anchors:
 		anchor.rotation = angle

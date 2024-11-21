@@ -1,11 +1,10 @@
-[gd_scene load_steps=7 format=3 uid="uid://bxl0cph6oogti"]
+[gd_scene load_steps=6 format=3 uid="uid://bxl0cph6oogti"]
 
 [ext_resource type="Material" uid="uid://tx5m7yl7kjgo" path="res://shaders/starryMat.tres" id="1_j1jec"]
 [ext_resource type="Material" uid="uid://dxptuc3p7h6kt" path="res://shaders/poly_bg_mat.tres" id="2_85s3n"]
 [ext_resource type="PackedScene" uid="uid://bi6qwjfqobwe6" path="res://scenes/HUD.tscn" id="2_kg8bw"]
 [ext_resource type="Texture2D" uid="uid://dvau6hipvkxjd" path="res://assets/HUD-BORDER-SMALL-BG.png" id="3_7j55n"]
 [ext_resource type="PackedScene" uid="uid://mnjnk0imid2f" path="res://scenes/void.tscn" id="4_f7v1d"]
-[ext_resource type="PackedScene" uid="uid://cc3a56med2ejh" path="res://scenes/arm.tscn" id="6_rqdtq"]
 
 [node name="Main" type="Node2D"]
 
@@ -51,7 +50,3 @@ position = Vector2(569, 366)
 layer = 10
 
 [node name="HUD" parent="HUD" instance=ExtResource("2_kg8bw")]
-
-[node name="Arm" parent="." instance=ExtResource("6_rqdtq")]
-z_index = 5
-position = Vector2(630, 289)

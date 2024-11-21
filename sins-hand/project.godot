@@ -25,6 +25,10 @@ window/stretch/mode="viewport"
 
 enabled=PackedStringArray("res://addons/Souperior 2D Skeleton Modifications/plugin.cfg")
 
+[global_group]
+
+arm_Seg=""
+
 [input]
 
 up={

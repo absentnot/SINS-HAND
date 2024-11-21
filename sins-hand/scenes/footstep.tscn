@@ -4,6 +4,7 @@
 [ext_resource type="Script" path="res://scripts/footstep.gd" id="2_hun2d"]
 
 [node name="footstep" type="Sprite2D"]
+modulate = Color(1, 1, 1, 0.72549)
 z_index = -6
 texture_filter = 1
 texture = ExtResource("1_jmbsj")
