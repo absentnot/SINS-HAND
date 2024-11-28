@@ -1,12 +1,14 @@
-[gd_scene load_steps=18 format=3 uid="uid://mnjnk0imid2f"]
+[gd_scene load_steps=20 format=3 uid="uid://mnjnk0imid2f"]
 
 [ext_resource type="Material" uid="uid://cb3v5k0c5r8ui" path="res://shaders/OutlineMaterial.tres" id="1_aur5r"]
 [ext_resource type="PackedScene" uid="uid://bgty0g4u5vpow" path="res://scenes/player.tscn" id="1_scwxu"]
+[ext_resource type="Script" path="res://scenes/void.gd" id="1_yqhl7"]
 [ext_resource type="Material" uid="uid://8pqvsik5eyos" path="res://shaders/reflect_mat.tres" id="2_nf1bf"]
 [ext_resource type="Material" uid="uid://c761gdt38jaw2" path="res://shaders/player_reflect_mat.tres" id="4_vybtq"]
 [ext_resource type="Texture2D" uid="uid://dalpole5wxuoc" path="res://assets/shadow.png" id="5_vmem5"]
 [ext_resource type="PackedScene" uid="uid://kfhvj854jqqd" path="res://scenes/void-gate.tscn" id="6_h3cxf"]
 [ext_resource type="Texture2D" uid="uid://cwvhjj4ol4r0f" path="res://assets/snowpatch.png" id="7_0cm8c"]
+[ext_resource type="PackedScene" uid="uid://bbiwn4twu8fbu" path="res://scenes/draggable_block.tscn" id="9_3uoyd"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_2reb4"]
 size = Vector2(284, 3460.5)
@@ -62,7 +64,9 @@ color = Color(0.784314, 0.784314, 0.784314, 1)
 alpha_curve = SubResource("CurveTexture_4ay54")
 
 [node name="Void" type="Node2D"]
+y_sort_enabled = true
 texture_filter = 1
+script = ExtResource("1_yqhl7")
 
 [node name="ColorRect" type="ColorRect" parent="."]
 z_index = -99
@@ -181,3 +185,9 @@ visibility_rect = Rect2(-1750, -200, 3500, 2800)
 z_index = -8
 position = Vector2(-4, -1352)
 texture = ExtResource("7_0cm8c")
+
+[node name="DraggableBlock" parent="." instance=ExtResource("9_3uoyd")]
+position = Vector2(1, 238)
+rotation = -0.47822
+mass = 30.0
+linear_damp = 2.0

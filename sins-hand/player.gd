@@ -11,8 +11,8 @@ var canStep = true
 var alternate_foot = false
 
 func _process(delta):
-	if !reflection:
-		print("PLAYER GLOBAL:", global_position)
+	#if !reflection:
+		#print("PLAYER GLOBAL:", global_position)
 	var input = Input.get_vector("left", "right", "up", "down")
 	var is_sprinting : bool = Input.is_action_pressed("sprint")
 	
@@ -46,8 +46,17 @@ func _process(delta):
 	
 	dust_particles.position.x = -input.normalized().x * 50.0
 	
+	if Input.is_action_pressed("grab") and !reflection:
+		# Get the screen size (viewport dimensions)
+		var screen_size = get_viewport().get_visible_rect().size
+		var inverse_target = position + get_viewport().get_mouse_position() - screen_size - Vector2(210.0, 30.0) + (get_viewport().get_camera_2d().get_screen_center_position() - position) # adjustment for camera offset
+		var mouse_dir = (inverse_target - position).normalized()
+		sin.direction = rotate_toward(sin.direction, -atan2(mouse_dir.x, mouse_dir.y), 10.0 * delta)
+		
 	if input:
-		sin.direction = rotate_toward(sin.direction,  -atan2(input.x, input.y), 8.0 * delta)
+		sin.direction = rotate_toward(sin.direction, -atan2(input.x, input.y), 8.0 * delta)
+	
+	
 	
 	sin.set_state("idle" if input.is_zero_approx() else "move")
 	

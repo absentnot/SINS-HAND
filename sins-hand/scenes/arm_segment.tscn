@@ -1,7 +1,10 @@
-[gd_scene load_steps=3 format=3 uid="uid://cpwk77xj2ntjn"]
+[gd_scene load_steps=4 format=3 uid="uid://cpwk77xj2ntjn"]
 
 [ext_resource type="Script" path="res://scenes/arm.gd" id="1_v7f64"]
 [ext_resource type="Texture2D" uid="uid://dkqeb1ia56aj" path="res://assets/SIN-HAND.png" id="2_vmp0t"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_jmadx"]
+radius = 21.2132
 
 [node name="ArmLine" type="Line2D" groups=["arm_Seg"]]
 z_index = -5
@@ -14,4 +17,7 @@ visible = false
 texture_filter = 1
 texture = ExtResource("2_vmp0t")
 
-[node name="RigidBody2D" type="RigidBody2D" parent="."]
+[node name="HandArea" type="Area2D" parent="Sin-hand" groups=["hands"]]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Sin-hand/HandArea"]
+shape = SubResource("CircleShape2D_jmadx")

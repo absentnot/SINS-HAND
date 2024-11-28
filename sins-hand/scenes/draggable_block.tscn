@@ -1,0 +1,50 @@
+[gd_scene load_steps=7 format=3 uid="uid://bbiwn4twu8fbu"]
+
+[ext_resource type="Script" path="res://draggable_block.gd" id="1_gb4yv"]
+[ext_resource type="Texture2D" uid="uid://ccwt8lvb7c666" path="res://assets/square.png" id="2_5s5ou"]
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_8hqyp"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_gqwk3"]
+size = Vector2(100, 100)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_bkhwe"]
+size = Vector2(35, 35)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_xsv71"]
+size = Vector2(95, 95)
+
+[node name="DraggableBlock" type="RigidBody2D" groups=["pickable"]]
+z_index = -10
+y_sort_enabled = true
+collision_layer = 2
+collision_mask = 3
+mass = 10.0
+physics_material_override = SubResource("PhysicsMaterial_8hqyp")
+gravity_scale = 0.0
+inertia = 1.0
+linear_damp = 2.0
+angular_damp = 2.0
+script = ExtResource("1_gb4yv")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_gqwk3")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture_filter = 1
+texture = ExtResource("2_5s5ou")
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("RectangleShape2D_bkhwe")
+
+[node name="Area2DLarge" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2DLarge"]
+shape = SubResource("RectangleShape2D_xsv71")
+
+[node name="Node2D" type="Node2D" parent="."]
+
+[connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]
+[connection signal="area_exited" from="Area2DLarge" to="." method="_on_area_2d_large_area_exited"]

@@ -20,7 +20,7 @@ func _ready():
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	#$Anchor.position = get_viewport().get_mouse_position()
-	#print("ANCHOR GLOBAL POSITION:", $Anchor.global_position)
+	#print("ANCHOR GLOBAL POSITION:", $Anchor.global_position)"res://scenes/arm_segment.tscn"
 	pass
 
 func generate_arm():
@@ -35,6 +35,7 @@ func generate_arm():
 			# First Segment
 			segment.anchor = $Anchor
 			segment.is_start = true
+			segment.is_end = false
 			#segment.modulate = Color(1.0, 0.0, 0.0)
 		elif seg != num_segments - 1:
 			# Middle Segments
@@ -51,6 +52,8 @@ func generate_arm():
 		
 		segment.side = arm_side
 		segment.player_node = player_node
+		if seg > 0:
+			previous_segment.following_segment = segment
 		player_node.get_parent().add_child.call_deferred(segment)
 		#segments.append(segment)
 		#print("NEW")	

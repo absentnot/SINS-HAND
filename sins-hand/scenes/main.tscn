@@ -1,5 +1,6 @@
-[gd_scene load_steps=6 format=3 uid="uid://bxl0cph6oogti"]
+[gd_scene load_steps=7 format=3 uid="uid://bxl0cph6oogti"]
 
+[ext_resource type="Script" path="res://scenes/main.gd" id="1_88eq1"]
 [ext_resource type="Material" uid="uid://tx5m7yl7kjgo" path="res://shaders/starryMat.tres" id="1_j1jec"]
 [ext_resource type="Material" uid="uid://dxptuc3p7h6kt" path="res://shaders/poly_bg_mat.tres" id="2_85s3n"]
 [ext_resource type="PackedScene" uid="uid://bi6qwjfqobwe6" path="res://scenes/HUD.tscn" id="2_kg8bw"]
@@ -7,6 +8,7 @@
 [ext_resource type="PackedScene" uid="uid://mnjnk0imid2f" path="res://scenes/void.tscn" id="4_f7v1d"]
 
 [node name="Main" type="Node2D"]
+script = ExtResource("1_88eq1")
 
 [node name="CRT" type="ColorRect" parent="."]
 z_index = 99
