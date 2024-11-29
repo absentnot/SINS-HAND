@@ -1,55 +1,14 @@
-[gd_scene load_steps=20 format=3 uid="uid://kfhvj854jqqd"]
+[gd_scene load_steps=23 format=3 uid="uid://kfhvj854jqqd"]
 
-[ext_resource type="Texture2D" uid="uid://c0qq43b0bu5le" path="res://assets/gate-VOID.png" id="1_bso6d"]
 [ext_resource type="Script" path="res://scenes/void_gate.gd" id="1_wy6jb"]
-[ext_resource type="Shader" path="res://shaders/dynamic-glow.gdshader" id="2_0ca53"]
+[ext_resource type="Texture2D" uid="uid://bdg7pay14i58u" path="res://assets/gate.png" id="2_f3owe"]
 [ext_resource type="Texture2D" uid="uid://dwec1u6a2iq8e" path="res://assets/gate-VOID-inverted.png" id="3_3b53a"]
+[ext_resource type="Texture2D" uid="uid://5oje4el17hgj" path="res://assets/gate-bg.png" id="3_cf1m5"]
 [ext_resource type="Shader" path="res://shaders/glow.gdshader" id="3_d08c8"]
+[ext_resource type="Material" uid="uid://d2osj3pljx1kr" path="res://shaders/gate-glow-mat.tres" id="4_y7jxw"]
 [ext_resource type="AudioStream" uid="uid://c27nmfvlurl5r" path="res://audio/sfx/PortalHumLoop_Void_SH.ogg" id="6_paudw"]
-
-[sub_resource type="Curve" id="Curve_2465f"]
-_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.393333, 1), 0.0, 0.0, 0, 0]
-point_count = 2
-
-[sub_resource type="Curve" id="Curve_srjva"]
-_data = [Vector2(0, 0.89011), 0.0, 0.0, 0, 0, Vector2(0.466667, 0.692308), 0.0, 0.0, 0, 0, Vector2(0.813333, 0.879121), 0.0, 0.0, 0, 0]
-point_count = 3
-
-[sub_resource type="Curve" id="Curve_6hja2"]
-_data = [Vector2(0, 0.494505), 0.0, 0.0, 0, 0, Vector2(0.453333, 0.813187), 0.0, 0.0, 0, 0]
-point_count = 2
-
-[sub_resource type="CurveXYZTexture" id="CurveXYZTexture_fbesd"]
-curve_x = SubResource("Curve_2465f")
-curve_y = SubResource("Curve_srjva")
-curve_z = SubResource("Curve_6hja2")
-
-[sub_resource type="FastNoiseLite" id="FastNoiseLite_n8jac"]
-
-[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_ft2h5"]
-noise = SubResource("FastNoiseLite_n8jac")
-
-[sub_resource type="FastNoiseLite" id="FastNoiseLite_bpwgi"]
-
-[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_5vmwk"]
-noise = SubResource("FastNoiseLite_bpwgi")
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_agbbn"]
-shader = ExtResource("2_0ca53")
-shader_parameter/fireball_scale_y = -0.195
-shader_parameter/glow_scale_y = -1.265
-shader_parameter/glow_strength = 1.35
-shader_parameter/glow_intensity = 0.785
-shader_parameter/pixel_size = 1
-shader_parameter/glow_position = Vector2(-0.5, -0.505)
-shader_parameter/glow_size = Vector2(1.69, 2.205)
-shader_parameter/pulsate = true
-shader_parameter/pulsation_speed = 0.19
-shader_parameter/glow_intensity_start = 1.335
-shader_parameter/glow_intensity_stop = 0.75
-shader_parameter/noise = SubResource("NoiseTexture2D_ft2h5")
-shader_parameter/noise2 = SubResource("NoiseTexture2D_5vmwk")
-shader_parameter/colo_curve = SubResource("CurveXYZTexture_fbesd")
+[ext_resource type="Texture2D" uid="uid://dkoujeliu1xqx" path="res://assets/gate-open-spritesheet.png" id="7_gx80g"]
+[ext_resource type="AudioStream" uid="uid://dps2c7fle1skd" path="res://audio/sfx/Select_Limbo_SH.ogg" id="9_sf8vi"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_1f4pq"]
 shader = ExtResource("3_d08c8")
@@ -69,19 +28,85 @@ radius = 301.0
 radius = 170.0
 height = 396.0
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_0rdl8"]
+atlas = ExtResource("7_gx80g")
+region = Rect2(0, 0, 300, 330)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_67ipv"]
+atlas = ExtResource("7_gx80g")
+region = Rect2(300, 0, 300, 330)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ixyvk"]
+atlas = ExtResource("7_gx80g")
+region = Rect2(600, 0, 300, 330)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vonhp"]
+atlas = ExtResource("7_gx80g")
+region = Rect2(900, 0, 300, 330)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0g0h8"]
+atlas = ExtResource("7_gx80g")
+region = Rect2(1200, 0, 300, 330)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_k5wky"]
+atlas = ExtResource("7_gx80g")
+region = Rect2(1500, 0, 300, 330)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_wy17v"]
+atlas = ExtResource("7_gx80g")
+region = Rect2(1800, 0, 300, 330)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_mtysx"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0rdl8")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_67ipv")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ixyvk")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vonhp")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0g0h8")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_k5wky")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_wy17v")
+}],
+"loop": false,
+"name": &"default",
+"speed": 10.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_2ga3w"]
+radius = 37.0135
+
 [node name="GATE" type="Node2D" groups=["gate"]]
 texture_filter = 1
 script = ExtResource("1_wy6jb")
 
 [node name="Gate" type="Sprite2D" parent="."]
 texture_filter = 1
-texture = ExtResource("1_bso6d")
+texture = ExtResource("2_f3owe")
+
+[node name="GateBG" type="Sprite2D" parent="Gate"]
+visible = false
+texture = ExtResource("3_cf1m5")
 
 [node name="Gate-Inverted" type="Sprite2D" parent="."]
-material = SubResource("ShaderMaterial_agbbn")
+visible = false
+material = ExtResource("4_y7jxw")
 texture = ExtResource("3_3b53a")
 
 [node name="ColorRect" type="ColorRect" parent="."]
+visible = false
 material = SubResource("ShaderMaterial_1f4pq")
 offset_left = -79.0
 offset_top = -81.0
@@ -119,6 +144,22 @@ bus = &"SFX"
 [node name="CollisionShape2D" type="CollisionShape2D" parent="GateInnerArea"]
 shape = SubResource("CapsuleShape2D_fey65")
 
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_mtysx")
+
+[node name="KeyArea" type="Area2D" parent="AnimatedSprite2D"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="AnimatedSprite2D/KeyArea"]
+position = Vector2(0, 29)
+shape = SubResource("CircleShape2D_2ga3w")
+
+[node name="Pickup" type="AudioStreamPlayer2D" parent="."]
+unique_name_in_owner = true
+stream = ExtResource("9_sf8vi")
+volume_db = -10.0
+
 [connection signal="area_entered" from="GateArea" to="." method="_on_gate_area_area_entered"]
 [connection signal="area_entered" from="GateInnerArea" to="." method="_on_gate_inner_area_area_entered"]
 [connection signal="area_exited" from="GateInnerArea" to="." method="_on_gate_inner_area_area_exited"]
+[connection signal="animation_finished" from="AnimatedSprite2D" to="." method="_on_animated_sprite_2d_animation_finished"]
+[connection signal="area_entered" from="AnimatedSprite2D/KeyArea" to="." method="_on_key_area_area_entered"]

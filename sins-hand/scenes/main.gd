@@ -7,7 +7,7 @@ var mouse_speed = 5.0
 @export var levels : Array[PackedScene]
 var level = 0
 
-func _input(event):
+func _unhandled_input(event):
 	if event.is_action_released("grab") and held_object:
 		print("DROP!")
 		held_object.drop(Input.get_last_mouse_velocity() * mouse_speed)
@@ -16,6 +16,7 @@ func _input(event):
 func _ready():
 	updatePickable()
 	updateGate()
+	current_level.get_tree().paused = true
 
 func updatePickable():
 	for node in get_tree().get_nodes_in_group("pickable"):
@@ -46,9 +47,10 @@ func nextLevel():
 	
 
 func blackTransition():
+	current_level.get_tree().paused = false
 	%BlackTransition.modulate.a = 1.0
 	var tw = create_tween()
-	tw.tween_property(%BlackTransition, "modulate:a", 0.0, 1.0)
+	tw.tween_property(%BlackTransition, "modulate:a", 0.0, 3.0)
 
 func whiteTransition():
 	print("TRANSITION")
@@ -61,3 +63,9 @@ func whiteTransition():
 	tw.tween_property(%WhiteTransition, "modulate:a", 1.0, 1.5)
 	tw.tween_callback(nextLevel)
 	tw.tween_property(%WhiteTransition, "modulate:a", 0.0, 1.5)
+
+
+func _on_hud_start_game():
+	blackTransition()
+	var tw = create_tween()
+	tw.tween_property($Atmosphere, "volume_db", 0, 1.0)

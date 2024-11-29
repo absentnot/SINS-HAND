@@ -3,8 +3,8 @@
 [ext_resource type="Script" path="res://draggable_block.gd" id="1_ktsf7"]
 [ext_resource type="Texture2D" uid="uid://ccwt8lvb7c666" path="res://assets/square.png" id="2_moa6j"]
 [ext_resource type="AudioStream" uid="uid://crdkuwy7ub2jp" path="res://audio/sfx/DeSelect_Limbo_SH.ogg" id="3_0dhjq"]
-[ext_resource type="AudioStream" uid="uid://co667ppv3wfk4" path="res://audio/sfx/Footstep2_Void_SH.ogg" id="3_ylaes"]
 [ext_resource type="AudioStream" uid="uid://dps2c7fle1skd" path="res://audio/sfx/Select_Limbo_SH.ogg" id="4_r1il4"]
+[ext_resource type="AudioStream" uid="uid://fvqsi0j2b63e" path="res://audio/sfx/BumpIntoObject.ogg" id="5_mja0g"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_8hqyp"]
 
@@ -49,22 +49,18 @@ shape = SubResource("RectangleShape2D_bkhwe")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2DLarge"]
 shape = SubResource("RectangleShape2D_xsv71")
 
-[node name="BumpIntoObject" type="AudioStreamPlayer2D" parent="."]
-stream = ExtResource("3_ylaes")
-volume_db = -14.054
-pitch_scale = 1.2
-
 [node name="Pickup" type="AudioStreamPlayer2D" parent="."]
 unique_name_in_owner = true
 stream = ExtResource("4_r1il4")
 volume_db = -10.0
-stream_paused = true
 
 [node name="Drop" type="AudioStreamPlayer2D" parent="."]
 unique_name_in_owner = true
 stream = ExtResource("3_0dhjq")
 volume_db = -10.0
-stream_paused = true
+
+[node name="BumpIntoObject" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("5_mja0g")
 
 [connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]
 [connection signal="area_entered" from="Area2DLarge" to="." method="_on_area_2d_large_area_entered"]

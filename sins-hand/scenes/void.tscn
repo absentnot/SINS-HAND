@@ -176,7 +176,6 @@ visibility_rect = Rect2(-2000, -1500, 4000, 3500)
 [node name="GATE" parent="." instance=ExtResource("6_h3cxf")]
 z_index = -5
 position = Vector2(0, -1516)
-is_open = true
 
 [node name="GPUParticles2D" type="GPUParticles2D" parent="GATE"]
 position = Vector2(0, 4)
@@ -431,3 +430,5 @@ position = Vector2(-60, 1711)
 
 [node name="DraggableBlock76" parent="asteroids" instance=ExtResource("12_jaqq6")]
 position = Vector2(-916, -24)
+
+[connection signal="gateOpened" from="GATE" to="." method="_on_gate_gate_opened"]

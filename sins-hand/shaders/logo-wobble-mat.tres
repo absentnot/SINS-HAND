@@ -1,4 +1,4 @@
-[gd_resource type="ShaderMaterial" load_steps=4 format=3 uid="uid://nxw1y0s3occt"]
+[gd_resource type="ShaderMaterial" load_steps=4 format=3 uid="uid://ctdxyg526o0cb"]
 
 [ext_resource type="Shader" path="res://shaders/wobble.gdshader" id="1_4gv1y"]
 

@@ -1,0 +1,47 @@
+[gd_resource type="ShaderMaterial" load_steps=10 format=3 uid="uid://d2osj3pljx1kr"]
+
+[ext_resource type="Shader" path="res://shaders/dynamic-glow.gdshader" id="1_3b8ei"]
+
+[sub_resource type="Curve" id="Curve_2465f"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.393333, 1), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="Curve" id="Curve_srjva"]
+_data = [Vector2(0, 0.89011), 0.0, 0.0, 0, 0, Vector2(0.466667, 0.692308), 0.0, 0.0, 0, 0, Vector2(0.813333, 0.879121), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="Curve" id="Curve_6hja2"]
+_data = [Vector2(0, 0.494505), 0.0, 0.0, 0, 0, Vector2(0.453333, 0.813187), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveXYZTexture" id="CurveXYZTexture_fbesd"]
+curve_x = SubResource("Curve_2465f")
+curve_y = SubResource("Curve_srjva")
+curve_z = SubResource("Curve_6hja2")
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_n8jac"]
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_ft2h5"]
+noise = SubResource("FastNoiseLite_n8jac")
+
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_bpwgi"]
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_5vmwk"]
+noise = SubResource("FastNoiseLite_bpwgi")
+
+[resource]
+shader = ExtResource("1_3b8ei")
+shader_parameter/fireball_scale_y = -0.195
+shader_parameter/glow_scale_y = -1.265
+shader_parameter/glow_strength = 1.35
+shader_parameter/glow_intensity = 0.785
+shader_parameter/pixel_size = 1
+shader_parameter/glow_position = Vector2(-0.5, -0.505)
+shader_parameter/glow_size = Vector2(1.69, 2.205)
+shader_parameter/pulsate = true
+shader_parameter/pulsation_speed = 0.19
+shader_parameter/glow_intensity_start = 1.335
+shader_parameter/glow_intensity_stop = 0.75
+shader_parameter/noise = SubResource("NoiseTexture2D_ft2h5")
+shader_parameter/noise2 = SubResource("NoiseTexture2D_5vmwk")
+shader_parameter/colo_curve = SubResource("CurveXYZTexture_fbesd")

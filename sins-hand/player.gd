@@ -26,13 +26,13 @@ func _process(delta):
 	var is_sprinting : bool = Input.is_action_pressed("sprint")
 	
 #	camera offsetting when near gate
-	if closestGate and position.distance_to(closestGate.position) < 1100.0 and position.distance_to(closestGate.position) > 300.0:
+	if closestGate and position.distance_to(closestGate.position) < 1100.0 and position.distance_to(closestGate.position) > 300.0 and closestGate.is_open:
 		$Camera2D.min_value = -abs(position.distance_to(closestGate.position) - 1100.0) / shake_dampen
 		$Camera2D.max_value = abs(position.distance_to(closestGate.position) - 1100.0) / shake_dampen
 		print($Camera2D.offset)
 		$Camera2D.zoom = lerp($Camera2D.zoom, Vector2(max(1.0 - abs(position.distance_to(closestGate.position) - 1100.0) / 1100.0, 0.5), max(1.0 - abs(position.distance_to(closestGate.position) - 1100.0) / 1100.0, 0.5)), 0.1)
 		$Camera2D.offset_override = lerp($Camera2D.offset_override, Vector2(0.0, 0.0), 0.02)
-	elif closestGate and position.distance_to(closestGate.position) < 300.0:
+	elif closestGate and position.distance_to(closestGate.position) < 300.0 and closestGate.is_open:
 		$Camera2D.zoom = lerp($Camera2D.zoom, Vector2(1.35, 1.35), 0.01)
 		$Camera2D.offset_override = lerp($Camera2D.offset_override, Vector2(0.0, -150.0), 0.02)
 	else:
@@ -110,7 +110,8 @@ func _physics_process(delta):
 		#position = input.normalized() * (500.0 if is_sprinting else 300.0) * delta
 		#position.y *= -1
 	
-	
+func knockback(pos, str):
+	velocity = (position - pos).normalized() * str
 
 func tween_rotation(degree):
 	var input = Input.get_vector("left", "right", "up", "down")
@@ -123,7 +124,7 @@ func _on_timer_timeout():
 
 
 func _on_player_area_area_entered(area):
-	if area.get_name() == "GateLocalArea":
+	if area.get_name() == "GateLocalArea" and closestGate.is_open:
 		move_speed = 90
 		sprint_speed = 150
 

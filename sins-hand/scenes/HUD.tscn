@@ -1,9 +1,32 @@
-[gd_scene load_steps=5 format=3 uid="uid://bi6qwjfqobwe6"]
+[gd_scene load_steps=17 format=3 uid="uid://bi6qwjfqobwe6"]
 
 [ext_resource type="Texture2D" uid="uid://dy7jysg8sg3lh" path="res://assets/HUD-BORDER-MED.png" id="1_wso08"]
-[ext_resource type="Material" uid="uid://nxw1y0s3occt" path="res://shaders/logo-wobble-mat.tres" id="2_cvamo"]
+[ext_resource type="Script" path="res://scenes/hud.gd" id="1_xtdob"]
+[ext_resource type="Material" uid="uid://ctdxyg526o0cb" path="res://shaders/logo-wobble-mat.tres" id="2_cvamo"]
 [ext_resource type="Texture2D" uid="uid://cnw6bt02jxryk" path="res://assets/SINS-HAND-TITLE.png" id="3_syv4f"]
 [ext_resource type="FontFile" uid="uid://0uxc0eayudy8" path="res://assets/Whacky_Joe_Monospaced.ttf" id="4_b8gcp"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_66p20"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_ah4vr"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_hfuds"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_ryamb"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_l5a03"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_40uhk"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_fup0q"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_qk3ha"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_wem5b"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_d1ohq"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_ofsul"]
 
 [node name="HUD" type="Control"]
 texture_filter = 1
@@ -13,6 +36,8 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 1
+script = ExtResource("1_xtdob")
 
 [node name="OneViewCenterContainer" type="CenterContainer" parent="."]
 layout_mode = 1
@@ -45,12 +70,27 @@ texture = ExtResource("3_syv4f")
 [node name="spacer" type="Control" parent="TitleCenterContainer/VBoxContainer"]
 custom_minimum_size = Vector2(0, 10)
 layout_mode = 2
+mouse_filter = 1
 
-[node name="RichTextLabel" type="RichTextLabel" parent="TitleCenterContainer/VBoxContainer"]
+[node name="START" type="Button" parent="TitleCenterContainer/VBoxContainer"]
 custom_minimum_size = Vector2(0, 50)
 layout_mode = 2
-theme_override_colors/default_color = Color(0.952941, 0.952941, 0.952941, 1)
-theme_override_fonts/normal_font = ExtResource("4_b8gcp")
-theme_override_font_sizes/normal_font_size = 24
-bbcode_enabled = true
-text = "[center]START[/center]"
+theme_override_colors/font_hover_pressed_color = Color(0.513233, 0.513233, 0.513233, 1)
+theme_override_colors/font_hover_color = Color(0.691357, 0.691357, 0.691357, 1)
+theme_override_colors/font_color = Color(0.952941, 0.952941, 0.952941, 1)
+theme_override_fonts/font = ExtResource("4_b8gcp")
+theme_override_font_sizes/font_size = 24
+theme_override_styles/focus = SubResource("StyleBoxEmpty_66p20")
+theme_override_styles/disabled_mirrored = SubResource("StyleBoxEmpty_ah4vr")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_hfuds")
+theme_override_styles/hover_pressed_mirrored = SubResource("StyleBoxEmpty_ryamb")
+theme_override_styles/hover_pressed = SubResource("StyleBoxEmpty_l5a03")
+theme_override_styles/hover_mirrored = SubResource("StyleBoxEmpty_40uhk")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_fup0q")
+theme_override_styles/pressed_mirrored = SubResource("StyleBoxEmpty_qk3ha")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_wem5b")
+theme_override_styles/normal_mirrored = SubResource("StyleBoxEmpty_d1ohq")
+theme_override_styles/normal = SubResource("StyleBoxEmpty_ofsul")
+text = "START"
+
+[connection signal="pressed" from="TitleCenterContainer/VBoxContainer/START" to="." method="_on_start_pressed"]

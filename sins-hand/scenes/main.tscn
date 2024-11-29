@@ -59,11 +59,11 @@ Vector2i(1, 0): {
 }
 
 [node name="Main" type="Node2D"]
+process_mode = 3
 script = ExtResource("1_88eq1")
 levels = Array[PackedScene]([ExtResource("4_f7v1d"), ExtResource("3_rhqwn")])
 
 [node name="CRT" type="ColorRect" parent="."]
-z_index = 99
 material = ExtResource("1_j1jec")
 anchors_preset = 15
 anchor_right = 1.0
@@ -72,11 +72,13 @@ offset_right = 1280.0
 offset_bottom = 720.0
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 2
 
 [node name="POLYNOISE" type="TextureRect" parent="."]
 material = ExtResource("2_85s3n")
 offset_right = 1280.0
 offset_bottom = 720.0
+mouse_filter = 2
 texture = ExtResource("3_7j55n")
 
 [node name="CenterContainer" type="CenterContainer" parent="."]
@@ -90,6 +92,7 @@ grow_horizontal = 2
 grow_vertical = 2
 
 [node name="SubViewportContainer" type="SubViewportContainer" parent="CenterContainer"]
+process_mode = 1
 layout_mode = 2
 
 [node name="MainViewport" type="SubViewport" parent="CenterContainer/SubViewportContainer"]
@@ -101,6 +104,7 @@ render_target_update_mode = 4
 
 [node name="Void" parent="CenterContainer/SubViewportContainer/MainViewport" groups=["level"] instance=ExtResource("4_f7v1d")]
 unique_name_in_owner = true
+process_mode = 1
 position = Vector2(569, 366)
 
 [node name="TransitionViewport" type="SubViewport" parent="CenterContainer/SubViewportContainer"]
@@ -134,18 +138,23 @@ grow_horizontal = 2
 grow_vertical = 2
 color = Color(0, 0, 0, 1)
 
-[node name="HUD" type="CanvasLayer" parent="."]
-layer = 10
-
-[node name="HUD" parent="HUD" instance=ExtResource("2_kg8bw")]
-
 [node name="Music" type="AudioStreamPlayer" parent="."]
+process_mode = 1
 stream = SubResource("AudioStreamInteractive_kcp2i")
 volume_db = -30.0
 autoplay = true
 bus = &"Music"
 
 [node name="Atmosphere" type="AudioStreamPlayer" parent="."]
+process_mode = 1
 stream = SubResource("AudioStreamInteractive_2t4k4")
+volume_db = -80.0
 autoplay = true
 bus = &"Atmosphere"
+
+[node name="HUD" type="CanvasLayer" parent="."]
+
+[node name="HUD" parent="HUD" instance=ExtResource("2_kg8bw")]
+unique_name_in_owner = true
+
+[connection signal="start_game" from="HUD/HUD" to="." method="_on_hud_start_game"]
