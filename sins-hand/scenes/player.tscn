@@ -111,14 +111,14 @@ shape = SubResource("CapsuleShape2D_afkk7")
 
 [node name="VoidFootsteps" type="AudioStreamPlayer" parent="."]
 stream = SubResource("AudioStreamRandomizer_hakps")
+volume_db = -40.0
+max_polyphony = 4
 bus = &"SFX"
 
 [node name="LimboFootsteps" type="AudioStreamPlayer" parent="."]
 stream = SubResource("AudioStreamRandomizer_8vwls")
+volume_db = -43.0
 bus = &"SFX"
-
-[node name="AudioListener2D" type="AudioListener2D" parent="."]
-current = true
 
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
 [connection signal="area_entered" from="PlayerArea" to="." method="_on_player_area_area_entered"]

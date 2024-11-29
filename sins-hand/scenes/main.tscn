@@ -142,6 +142,7 @@ layer = 10
 
 [node name="Music" type="AudioStreamPlayer" parent="."]
 stream = SubResource("AudioStreamInteractive_kcp2i")
+volume_db = -30.0
 autoplay = true
 bus = &"Music"
 

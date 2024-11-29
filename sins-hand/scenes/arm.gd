@@ -130,5 +130,5 @@ func set_segment(point1, point2):
 func _draw():
 	draw_polyline(points, Color("#353535"), width + 6.0)
 	draw_polyline(points, Color("#b7b7b7"), width)
-	if is_end:
-		draw_circle(inverse_target, 10.0, Color("#b7b7b7"))
+	#if is_end:
+		#draw_circle(inverse_target, 10.0, Color("#b7b7b7"))
