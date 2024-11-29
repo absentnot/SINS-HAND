@@ -1,31 +1,31 @@
-[gd_scene load_steps=7 format=3 uid="uid://bbiwn4twu8fbu"]
+[gd_scene load_steps=7 format=3 uid="uid://bh7iue4veisdy"]
 
-[ext_resource type="Script" path="res://draggable_block.gd" id="1_gb4yv"]
-[ext_resource type="Texture2D" uid="uid://ccwt8lvb7c666" path="res://assets/square.png" id="2_5s5ou"]
+[ext_resource type="Script" path="res://draggable_block.gd" id="1_seods"]
+[ext_resource type="Texture2D" uid="uid://ccwt8lvb7c666" path="res://assets/square.png" id="2_ymr7q"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_8hqyp"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_gqwk3"]
-size = Vector2(100, 100)
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_bkhwe"]
 size = Vector2(35, 35)
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_bkhwe"]
+size = Vector2(15, 15)
+
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_xsv71"]
-size = Vector2(135, 135)
+size = Vector2(90, 90)
 
 [node name="DraggableBlock" type="RigidBody2D" groups=["pickable"]]
 z_index = -10
 y_sort_enabled = true
 collision_layer = 2
 collision_mask = 3
-mass = 35.0
+mass = 25.0
 physics_material_override = SubResource("PhysicsMaterial_8hqyp")
 gravity_scale = 0.0
-max_contacts_reported = 5
+inertia = 1.0
 linear_damp = 2.0
-angular_damp = 2.0
-script = ExtResource("1_gb4yv")
+angular_damp = 4.0
+script = ExtResource("1_seods")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_gqwk3")
@@ -33,7 +33,8 @@ shape = SubResource("RectangleShape2D_gqwk3")
 [node name="Sprite2D" type="Sprite2D" parent="."]
 y_sort_enabled = true
 texture_filter = 1
-texture = ExtResource("2_5s5ou")
+scale = Vector2(0.4, 0.4)
+texture = ExtResource("2_ymr7q")
 
 [node name="Area2D" type="Area2D" parent="."]
 

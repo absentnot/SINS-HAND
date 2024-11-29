@@ -29,11 +29,14 @@ func drop(impulse=Input.get_last_mouse_velocity() * mouse_speed):
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	pass # Replace with function body.
+	randomize()
+	rotation = randf_range(-PI, PI)
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
+	if abs(angular_velocity) > 10.0:
+		angular_velocity = sign(angular_velocity) * 10.0
 	if !inHandArea and held:
 		drop()
 	if Input.is_action_pressed("grab") and inHandArea and !held:

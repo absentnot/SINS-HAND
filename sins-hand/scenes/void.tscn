@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=3 uid="uid://mnjnk0imid2f"]
+[gd_scene load_steps=24 format=3 uid="uid://mnjnk0imid2f"]
 
 [ext_resource type="Material" uid="uid://cb3v5k0c5r8ui" path="res://shaders/OutlineMaterial.tres" id="1_aur5r"]
 [ext_resource type="PackedScene" uid="uid://bgty0g4u5vpow" path="res://scenes/player.tscn" id="1_scwxu"]
@@ -8,7 +8,10 @@
 [ext_resource type="Texture2D" uid="uid://dalpole5wxuoc" path="res://assets/shadow.png" id="5_vmem5"]
 [ext_resource type="PackedScene" uid="uid://kfhvj854jqqd" path="res://scenes/void-gate.tscn" id="6_h3cxf"]
 [ext_resource type="Texture2D" uid="uid://cwvhjj4ol4r0f" path="res://assets/snowpatch.png" id="7_0cm8c"]
+[ext_resource type="PackedScene" uid="uid://2g46f4e1wu48" path="res://scenes/draggable_block_med.tscn" id="9_1u66g"]
 [ext_resource type="PackedScene" uid="uid://bbiwn4twu8fbu" path="res://scenes/draggable_block.tscn" id="9_3uoyd"]
+[ext_resource type="PackedScene" uid="uid://bh7iue4veisdy" path="res://scenes/draggable_block_small.tscn" id="10_74c25"]
+[ext_resource type="PackedScene" uid="uid://cufl48ta1affi" path="res://scenes/draggable_block_tiny.tscn" id="12_jaqq6"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_2reb4"]
 size = Vector2(284, 3460.5)
@@ -63,6 +66,9 @@ scale_curve = SubResource("CurveTexture_tm2il")
 color = Color(0.784314, 0.784314, 0.784314, 1)
 alpha_curve = SubResource("CurveTexture_4ay54")
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_x60fx"]
+radius = 1153.25
+
 [node name="Void" type="Node2D"]
 y_sort_enabled = true
 texture_filter = 1
@@ -74,7 +80,7 @@ anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 offset_left = -1841.0
-offset_top = -2028.0
+offset_top = -2552.0
 offset_right = 1999.0
 offset_bottom = 1304.0
 grow_horizontal = 2
@@ -128,6 +134,7 @@ position = Vector2(0, 603)
 can_dust = false
 
 [node name="SubViewportContainer" type="SubViewportContainer" parent="Player"]
+visible = false
 z_index = -9
 material = ExtResource("4_vybtq")
 anchors_preset = 15
@@ -145,7 +152,7 @@ pivot_offset = Vector2(100, 0)
 transparent_bg = true
 handle_input_locally = false
 size = Vector2i(100, 150)
-render_target_update_mode = 4
+render_target_update_mode = 0
 
 [node name="Player" parent="Player/SubViewportContainer/SubViewport" instance=ExtResource("1_scwxu")]
 position = Vector2(47.275, 79.21)
@@ -168,6 +175,7 @@ visibility_rect = Rect2(-2000, -1500, 4000, 3500)
 [node name="GATE" parent="." instance=ExtResource("6_h3cxf")]
 z_index = -5
 position = Vector2(0, -1516)
+is_open = true
 
 [node name="GPUParticles2D" type="GPUParticles2D" parent="GATE"]
 position = Vector2(0, 4)
@@ -181,13 +189,241 @@ explosiveness = 0.32
 randomness = 0.16
 visibility_rect = Rect2(-1750, -200, 3500, 2800)
 
+[node name="gateArea" type="Area2D" parent="."]
+position = Vector2(6, -1805)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="gateArea"]
+shape = SubResource("CircleShape2D_x60fx")
+
 [node name="Snowpatch" type="Sprite2D" parent="."]
 z_index = -8
 position = Vector2(-4, -1352)
 texture = ExtResource("7_0cm8c")
 
-[node name="DraggableBlock" parent="." instance=ExtResource("9_3uoyd")]
-position = Vector2(1, 238)
-rotation = -0.47822
-mass = 30.0
-linear_damp = 2.0
+[node name="asteroids" type="Node2D" parent="."]
+position = Vector2(-4, -1352)
+
+[node name="DraggableBlock" parent="asteroids" instance=ExtResource("9_1u66g")]
+position = Vector2(-3, 1580)
+
+[node name="DraggableBlock2" parent="asteroids" instance=ExtResource("10_74c25")]
+position = Vector2(-85, 1520)
+
+[node name="DraggableBlock3" parent="asteroids" instance=ExtResource("10_74c25")]
+position = Vector2(68, 1554)
+
+[node name="DraggableBlock4" parent="asteroids" instance=ExtResource("9_3uoyd")]
+position = Vector2(-583, 1342)
+
+[node name="DraggableBlock5" parent="asteroids" instance=ExtResource("9_1u66g")]
+position = Vector2(-1223, 957)
+
+[node name="DraggableBlock6" parent="asteroids" instance=ExtResource("9_3uoyd")]
+position = Vector2(-1278, 861)
+
+[node name="DraggableBlock7" parent="asteroids" instance=ExtResource("10_74c25")]
+position = Vector2(-1315, 985)
+
+[node name="DraggableBlock8" parent="asteroids" instance=ExtResource("9_3uoyd")]
+position = Vector2(863, 1231)
+
+[node name="DraggableBlock9" parent="asteroids" instance=ExtResource("10_74c25")]
+position = Vector2(754, 1182)
+
+[node name="DraggableBlock10" parent="asteroids" instance=ExtResource("10_74c25")]
+position = Vector2(761, 1004)
+
+[node name="DraggableBlock11" parent="asteroids" instance=ExtResource("10_74c25")]
+position = Vector2(825, 1148)
+
+[node name="DraggableBlock12" parent="asteroids" instance=ExtResource("9_3uoyd")]
+position = Vector2(1463, 766)
+
+[node name="DraggableBlock13" parent="asteroids" instance=ExtResource("9_1u66g")]
+position = Vector2(1414, 876)
+
+[node name="DraggableBlock14" parent="asteroids" instance=ExtResource("10_74c25")]
+position = Vector2(1409, 955)
+
+[node name="DraggableBlock15" parent="asteroids" instance=ExtResource("10_74c25")]
+position = Vector2(1548, 646)
+
+[node name="DraggableBlock16" parent="asteroids" instance=ExtResource("10_74c25")]
+position = Vector2(-679, 1270)
+
+[node name="DraggableBlock17" parent="asteroids" instance=ExtResource("9_1u66g")]
+position = Vector2(-436, 1250)
+
+[node name="DraggableBlock18" parent="asteroids" instance=ExtResource("10_74c25")]
+position = Vector2(304, 1374)
+
+[node name="DraggableBlock19" parent="asteroids" instance=ExtResource("10_74c25")]
+position = Vector2(-1001, 870)
+
+[node name="DraggableBlock20" parent="asteroids" instance=ExtResource("10_74c25")]
+position = Vector2(-957, 803)
+
+[node name="DraggableBlock21" parent="asteroids" instance=ExtResource("9_1u66g")]
+position = Vector2(701, 591)
+
+[node name="DraggableBlock22" parent="asteroids" instance=ExtResource("9_1u66g")]
+position = Vector2(-816, 540)
+
+[node name="DraggableBlock23" parent="asteroids" instance=ExtResource("9_3uoyd")]
+position = Vector2(-385, 877)
+
+[node name="DraggableBlock24" parent="asteroids" instance=ExtResource("9_1u66g")]
+position = Vector2(-466, 766)
+
+[node name="DraggableBlock25" parent="asteroids" instance=ExtResource("10_74c25")]
+position = Vector2(-930, 443)
+
+[node name="DraggableBlock26" parent="asteroids" instance=ExtResource("10_74c25")]
+position = Vector2(-863, 453)
+
+[node name="DraggableBlock27" parent="asteroids" instance=ExtResource("10_74c25")]
+position = Vector2(-429, 342)
+
+[node name="DraggableBlock28" parent="asteroids" instance=ExtResource("10_74c25")]
+position = Vector2(304, 150)
+
+[node name="DraggableBlock29" parent="asteroids" instance=ExtResource("10_74c25")]
+position = Vector2(244, 581)
+
+[node name="DraggableBlock30" parent="asteroids" instance=ExtResource("9_1u66g")]
+position = Vector2(224, 675)
+
+[node name="DraggableBlock31" parent="asteroids" instance=ExtResource("10_74c25")]
+position = Vector2(1155, 143)
+
+[node name="DraggableBlock32" parent="asteroids" instance=ExtResource("9_1u66g")]
+position = Vector2(789, 661)
+
+[node name="DraggableBlock33" parent="asteroids" instance=ExtResource("10_74c25")]
+position = Vector2(-1250, 36)
+
+[node name="DraggableBlock34" parent="asteroids" instance=ExtResource("10_74c25")]
+position = Vector2(755, 490)
+
+[node name="DraggableBlock35" parent="asteroids" instance=ExtResource("10_74c25")]
+position = Vector2(886, 594)
+
+[node name="DraggableBlock36" parent="asteroids" instance=ExtResource("10_74c25")]
+position = Vector2(-277, 942)
+
+[node name="DraggableBlock37" parent="asteroids" instance=ExtResource("10_74c25")]
+position = Vector2(-591, 31)
+
+[node name="DraggableBlock38" parent="asteroids" instance=ExtResource("10_74c25")]
+position = Vector2(604, 58)
+
+[node name="DraggableBlock39" parent="asteroids" instance=ExtResource("10_74c25")]
+position = Vector2(-99, 592)
+
+[node name="DraggableBlock40" parent="asteroids" instance=ExtResource("12_jaqq6")]
+position = Vector2(-854, 408)
+
+[node name="DraggableBlock41" parent="asteroids" instance=ExtResource("12_jaqq6")]
+position = Vector2(-1150, 880)
+
+[node name="DraggableBlock42" parent="asteroids" instance=ExtResource("12_jaqq6")]
+position = Vector2(-623, 1264)
+
+[node name="DraggableBlock43" parent="asteroids" instance=ExtResource("12_jaqq6")]
+position = Vector2(-27, 1493)
+
+[node name="DraggableBlock44" parent="asteroids" instance=ExtResource("12_jaqq6")]
+position = Vector2(-138, 1552)
+
+[node name="DraggableBlock45" parent="asteroids" instance=ExtResource("12_jaqq6")]
+position = Vector2(110, 1590)
+
+[node name="DraggableBlock46" parent="asteroids" instance=ExtResource("12_jaqq6")]
+position = Vector2(964, 1258)
+
+[node name="DraggableBlock47" parent="asteroids" instance=ExtResource("12_jaqq6")]
+position = Vector2(-466, 876)
+
+[node name="DraggableBlock48" parent="asteroids" instance=ExtResource("12_jaqq6")]
+position = Vector2(-445, 709)
+
+[node name="DraggableBlock49" parent="asteroids" instance=ExtResource("12_jaqq6")]
+position = Vector2(-862, 607)
+
+[node name="DraggableBlock50" parent="asteroids" instance=ExtResource("12_jaqq6")]
+position = Vector2(-1231, 88)
+
+[node name="DraggableBlock51" parent="asteroids" instance=ExtResource("12_jaqq6")]
+position = Vector2(-1180, -5)
+
+[node name="DraggableBlock52" parent="asteroids" instance=ExtResource("12_jaqq6")]
+position = Vector2(1339, 817)
+
+[node name="DraggableBlock53" parent="asteroids" instance=ExtResource("12_jaqq6")]
+position = Vector2(1445, 1001)
+
+[node name="DraggableBlock54" parent="asteroids" instance=ExtResource("12_jaqq6")]
+position = Vector2(1471, 902)
+
+[node name="DraggableBlock55" parent="asteroids" instance=ExtResource("12_jaqq6")]
+position = Vector2(1562, 719)
+
+[node name="DraggableBlock56" parent="asteroids" instance=ExtResource("12_jaqq6")]
+position = Vector2(981, 1086)
+
+[node name="DraggableBlock57" parent="asteroids" instance=ExtResource("12_jaqq6")]
+position = Vector2(305, 751)
+
+[node name="DraggableBlock58" parent="asteroids" instance=ExtResource("12_jaqq6")]
+position = Vector2(-91, 643)
+
+[node name="DraggableBlock59" parent="asteroids" instance=ExtResource("12_jaqq6")]
+position = Vector2(-57, 580)
+
+[node name="DraggableBlock60" parent="asteroids" instance=ExtResource("12_jaqq6")]
+position = Vector2(-129, 546)
+
+[node name="DraggableBlock61" parent="asteroids" instance=ExtResource("12_jaqq6")]
+position = Vector2(121, 616)
+
+[node name="DraggableBlock62" parent="asteroids" instance=ExtResource("12_jaqq6")]
+position = Vector2(363, 111)
+
+[node name="DraggableBlock63" parent="asteroids" instance=ExtResource("12_jaqq6")]
+position = Vector2(-392, 368)
+
+[node name="DraggableBlock64" parent="asteroids" instance=ExtResource("12_jaqq6")]
+position = Vector2(1113, 194)
+
+[node name="DraggableBlock65" parent="asteroids" instance=ExtResource("12_jaqq6")]
+position = Vector2(1219, 86)
+
+[node name="DraggableBlock66" parent="asteroids" instance=ExtResource("12_jaqq6")]
+position = Vector2(646, 12)
+
+[node name="DraggableBlock67" parent="asteroids" instance=ExtResource("12_jaqq6")]
+position = Vector2(-551, 52)
+
+[node name="DraggableBlock68" parent="asteroids" instance=ExtResource("12_jaqq6")]
+position = Vector2(-646, -5)
+
+[node name="DraggableBlock69" parent="asteroids" instance=ExtResource("12_jaqq6")]
+position = Vector2(638, 546)
+
+[node name="DraggableBlock70" parent="asteroids" instance=ExtResource("12_jaqq6")]
+position = Vector2(746, 730)
+
+[node name="DraggableBlock71" parent="asteroids" instance=ExtResource("12_jaqq6")]
+position = Vector2(784, 452)
+
+[node name="DraggableBlock72" parent="asteroids" instance=ExtResource("12_jaqq6")]
+position = Vector2(1591, 601)
+
+[node name="DraggableBlock73" parent="asteroids" instance=ExtResource("12_jaqq6")]
+position = Vector2(-458, 296)
+
+[node name="DraggableBlock74" parent="asteroids" instance=ExtResource("12_jaqq6")]
+position = Vector2(454, 431)
+
+[node name="DraggableBlock75" parent="asteroids" instance=ExtResource("12_jaqq6")]
+position = Vector2(-60, 1711)

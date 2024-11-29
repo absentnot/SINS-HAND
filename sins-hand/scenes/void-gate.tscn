@@ -1,6 +1,7 @@
-[gd_scene load_steps=15 format=3 uid="uid://kfhvj854jqqd"]
+[gd_scene load_steps=18 format=3 uid="uid://kfhvj854jqqd"]
 
 [ext_resource type="Texture2D" uid="uid://c0qq43b0bu5le" path="res://assets/gate-VOID.png" id="1_bso6d"]
+[ext_resource type="Script" path="res://scenes/void_gate.gd" id="1_wy6jb"]
 [ext_resource type="Shader" path="res://shaders/dynamic-glow.gdshader" id="2_0ca53"]
 [ext_resource type="Texture2D" uid="uid://dwec1u6a2iq8e" path="res://assets/gate-VOID-inverted.png" id="3_3b53a"]
 [ext_resource type="Shader" path="res://shaders/glow.gdshader" id="3_d08c8"]
@@ -56,8 +57,16 @@ shader_parameter/bness = 2.28
 shader_parameter/fall_off_scale = 1.895
 shader_parameter/b_offset = 0.74
 
-[node name="GATE" type="Node2D"]
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_c8bwm"]
+radius = 108.0
+height = 274.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_fvgwf"]
+radius = 301.0
+
+[node name="GATE" type="Node2D" groups=["gate"]]
 texture_filter = 1
+script = ExtResource("1_wy6jb")
 
 [node name="Gate" type="Sprite2D" parent="."]
 texture_filter = 1
@@ -73,3 +82,23 @@ offset_left = -79.0
 offset_top = -81.0
 offset_right = 80.0
 offset_bottom = 169.0
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+position = Vector2(0, -9)
+scale = Vector2(0.8, 0.8)
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="StaticBody2D"]
+position = Vector2(0, -13)
+polygon = PackedVector2Array(-98, 33, -82, 116, 91, 116, 99, 32, 46, 4, 0, -3, -45, 4)
+
+[node name="GateArea" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="GateArea"]
+shape = SubResource("CapsuleShape2D_c8bwm")
+
+[node name="GateLocalArea" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="GateLocalArea"]
+shape = SubResource("CircleShape2D_fvgwf")
+
+[connection signal="area_entered" from="GateArea" to="." method="_on_gate_area_area_entered"]

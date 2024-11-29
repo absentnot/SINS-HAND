@@ -1,14 +1,16 @@
-[gd_scene load_steps=7 format=3 uid="uid://bxl0cph6oogti"]
+[gd_scene load_steps=8 format=3 uid="uid://bxl0cph6oogti"]
 
 [ext_resource type="Script" path="res://scenes/main.gd" id="1_88eq1"]
 [ext_resource type="Material" uid="uid://tx5m7yl7kjgo" path="res://shaders/starryMat.tres" id="1_j1jec"]
 [ext_resource type="Material" uid="uid://dxptuc3p7h6kt" path="res://shaders/poly_bg_mat.tres" id="2_85s3n"]
 [ext_resource type="PackedScene" uid="uid://bi6qwjfqobwe6" path="res://scenes/HUD.tscn" id="2_kg8bw"]
 [ext_resource type="Texture2D" uid="uid://dvau6hipvkxjd" path="res://assets/HUD-BORDER-SMALL-BG.png" id="3_7j55n"]
+[ext_resource type="PackedScene" uid="uid://cwtu6i45r7i5a" path="res://scenes/limbo.tscn" id="3_rhqwn"]
 [ext_resource type="PackedScene" uid="uid://mnjnk0imid2f" path="res://scenes/void.tscn" id="4_f7v1d"]
 
 [node name="Main" type="Node2D"]
 script = ExtResource("1_88eq1")
+levels = Array[PackedScene]([ExtResource("4_f7v1d"), ExtResource("3_rhqwn")])
 
 [node name="CRT" type="ColorRect" parent="."]
 z_index = 99
@@ -41,12 +43,45 @@ grow_vertical = 2
 layout_mode = 2
 
 [node name="MainViewport" type="SubViewport" parent="CenterContainer/SubViewportContainer"]
+unique_name_in_owner = true
 handle_input_locally = false
 size = Vector2i(710, 615)
 render_target_update_mode = 4
 
-[node name="Void" parent="CenterContainer/SubViewportContainer/MainViewport" instance=ExtResource("4_f7v1d")]
+[node name="Void" parent="CenterContainer/SubViewportContainer/MainViewport" groups=["level"] instance=ExtResource("4_f7v1d")]
+unique_name_in_owner = true
 position = Vector2(569, 366)
+
+[node name="TransitionViewport" type="SubViewport" parent="CenterContainer/SubViewportContainer"]
+transparent_bg = true
+handle_input_locally = false
+size = Vector2i(710, 615)
+render_target_update_mode = 4
+
+[node name="WhiteTransition" type="ColorRect" parent="CenterContainer/SubViewportContainer/TransitionViewport"]
+unique_name_in_owner = true
+modulate = Color(1, 1, 1, 0)
+custom_minimum_size = Vector2(1280, 720)
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = 1280.0
+offset_bottom = 720.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="BlackTransition" type="ColorRect" parent="CenterContainer/SubViewportContainer/TransitionViewport"]
+unique_name_in_owner = true
+modulate = Color(1, 1, 1, 0)
+custom_minimum_size = Vector2(1280, 720)
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = 1280.0
+offset_bottom = 720.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 1)
 
 [node name="HUD" type="CanvasLayer" parent="."]
 layer = 10
