@@ -11,6 +11,8 @@ var side = "left"
 @export var inverse_target = Vector2(0.0, 0.0)
 @export var targetObj = PackedScene
 
+@export var handSprites = [preload("res://assets/SIN-HAND.png"), preload("res://assets/SIN-HAND-CLOSED.png")]
+
 @export var length = 20
 var num_segments = 7
 var speed = 1000.0
@@ -23,7 +25,7 @@ func _ready():
 
 func _process(delta):
 	#print("TARGET POS:", target)
-		
+	
 	if is_end and segment_to_follow:
 		#target = get_viewport().get_mouse_position()
 		target = segment_to_follow.points[0]
@@ -108,6 +110,11 @@ func _process(delta):
 	if is_end:
 		$"Sin-hand".position = target - 2.0 * dir * (length - 5.0)
 		$"Sin-hand".rotation = angle
+		if Input.is_action_pressed("grab"):
+			$"Sin-hand".texture = handSprites[1]
+		else:
+			$"Sin-hand".texture = handSprites[0]
+			
 		if side != "left":
 			$"Sin-hand".scale.x = -1
 			$"Sin-hand".rotation = angle + PI

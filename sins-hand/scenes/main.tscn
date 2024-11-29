@@ -72,7 +72,6 @@ grow_vertical = 2
 
 [node name="BlackTransition" type="ColorRect" parent="CenterContainer/SubViewportContainer/TransitionViewport"]
 unique_name_in_owner = true
-modulate = Color(1, 1, 1, 0)
 custom_minimum_size = Vector2(1280, 720)
 anchors_preset = 15
 anchor_right = 1.0

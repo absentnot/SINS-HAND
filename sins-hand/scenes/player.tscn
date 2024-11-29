@@ -80,7 +80,6 @@ wait_time = 0.22
 autostart = true
 
 [node name="Camera2D" type="Camera2D" parent="."]
-scale = Vector2(1, 1)
 position_smoothing_enabled = true
 drag_horizontal_enabled = true
 drag_vertical_enabled = true
