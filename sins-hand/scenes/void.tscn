@@ -151,6 +151,7 @@ pivot_offset = Vector2(100, 0)
 [node name="SubViewport" type="SubViewport" parent="Player/SubViewportContainer"]
 transparent_bg = true
 handle_input_locally = false
+audio_listener_enable_2d = true
 size = Vector2i(100, 150)
 render_target_update_mode = 0
 
@@ -282,10 +283,10 @@ position = Vector2(-930, 443)
 position = Vector2(-863, 453)
 
 [node name="DraggableBlock27" parent="asteroids" instance=ExtResource("10_74c25")]
-position = Vector2(-429, 342)
+position = Vector2(-573, 446)
 
 [node name="DraggableBlock28" parent="asteroids" instance=ExtResource("10_74c25")]
-position = Vector2(304, 150)
+position = Vector2(794, 165)
 
 [node name="DraggableBlock29" parent="asteroids" instance=ExtResource("10_74c25")]
 position = Vector2(244, 581)
@@ -312,10 +313,10 @@ position = Vector2(886, 594)
 position = Vector2(-277, 942)
 
 [node name="DraggableBlock37" parent="asteroids" instance=ExtResource("10_74c25")]
-position = Vector2(-591, 31)
+position = Vector2(1031, -181)
 
 [node name="DraggableBlock38" parent="asteroids" instance=ExtResource("10_74c25")]
-position = Vector2(604, 58)
+position = Vector2(-864, -120)
 
 [node name="DraggableBlock39" parent="asteroids" instance=ExtResource("10_74c25")]
 position = Vector2(-99, 592)
@@ -387,10 +388,10 @@ position = Vector2(-129, 546)
 position = Vector2(121, 616)
 
 [node name="DraggableBlock62" parent="asteroids" instance=ExtResource("12_jaqq6")]
-position = Vector2(363, 111)
+position = Vector2(852, 79)
 
 [node name="DraggableBlock63" parent="asteroids" instance=ExtResource("12_jaqq6")]
-position = Vector2(-392, 368)
+position = Vector2(-536, 416)
 
 [node name="DraggableBlock64" parent="asteroids" instance=ExtResource("12_jaqq6")]
 position = Vector2(1113, 194)
@@ -399,13 +400,13 @@ position = Vector2(1113, 194)
 position = Vector2(1219, 86)
 
 [node name="DraggableBlock66" parent="asteroids" instance=ExtResource("12_jaqq6")]
-position = Vector2(646, 12)
+position = Vector2(-834, -198)
 
 [node name="DraggableBlock67" parent="asteroids" instance=ExtResource("12_jaqq6")]
-position = Vector2(-551, 52)
+position = Vector2(883, 132)
 
 [node name="DraggableBlock68" parent="asteroids" instance=ExtResource("12_jaqq6")]
-position = Vector2(-646, -5)
+position = Vector2(1058, -137)
 
 [node name="DraggableBlock69" parent="asteroids" instance=ExtResource("12_jaqq6")]
 position = Vector2(638, 546)
@@ -420,10 +421,13 @@ position = Vector2(784, 452)
 position = Vector2(1591, 601)
 
 [node name="DraggableBlock73" parent="asteroids" instance=ExtResource("12_jaqq6")]
-position = Vector2(-458, 296)
+position = Vector2(-658, 366)
 
 [node name="DraggableBlock74" parent="asteroids" instance=ExtResource("12_jaqq6")]
-position = Vector2(454, 431)
+position = Vector2(494, 498)
 
 [node name="DraggableBlock75" parent="asteroids" instance=ExtResource("12_jaqq6")]
 position = Vector2(-60, 1711)
+
+[node name="DraggableBlock76" parent="asteroids" instance=ExtResource("12_jaqq6")]
+position = Vector2(-916, -24)

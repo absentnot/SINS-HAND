@@ -16,6 +16,11 @@ var shake_dampen = 300.0
 var move_speed = 300.0
 var sprint_speed = 500.0
 
+@onready var parent_level = get_parent()
+
+func _ready():
+	randomize()
+	
 func _process(delta):
 	var input = Input.get_vector("left", "right", "up", "down")
 	var is_sprinting : bool = Input.is_action_pressed("sprint")
@@ -37,6 +42,13 @@ func _process(delta):
 	if canStep and input and !reflection:
 		var footprint_inst = footprint.instantiate()
 		
+		if parent_level.level == 0:
+			$VoidFootsteps.pitch_scale = randf_range(0.85, 1.15)
+			$VoidFootsteps.play()
+		elif parent_level.level == 1:
+			$LimboFootsteps.pitch_scale = randf_range(0.85, 1.15)
+			$LimboFootsteps.play()
+			
 		if alternate_foot:
 			footprint_inst.set_angle(sin.direction + PI + 0.4)
 			footprint_inst.position.x = position.x + 20.0 * input.y * -int(alternate_foot)
@@ -65,6 +77,7 @@ func _process(delta):
 		var inverse_target = position + get_viewport().get_mouse_position() - screen_size - Vector2(210.0, 30.0) + (get_viewport().get_camera_2d().get_screen_center_position() - position) # adjustment for camera offset
 		var mouse_dir = (inverse_target - position).normalized()
 		sin.direction = rotate_toward(sin.direction, -atan2(mouse_dir.x, mouse_dir.y), 10.0 * delta)
+	
 		
 	if input:
 		sin.direction = rotate_toward(sin.direction, -atan2(input.x, input.y), 8.0 * delta)

@@ -14,7 +14,6 @@ scale = Vector2(4.92137, 5.01664)
 texture = ExtResource("1_p5nng")
 
 [node name="Player" parent="." instance=ExtResource("2_1yxpv")]
-scale = Vector2(0.8, 0.8)
 
 [node name="Camera2D2" type="Camera2D" parent="Player"]
 position_smoothing_enabled = true

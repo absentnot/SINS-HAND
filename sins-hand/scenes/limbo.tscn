@@ -1,3 +1,10 @@
-[gd_scene format=3 uid="uid://cwtu6i45r7i5a"]
+[gd_scene load_steps=3 format=3 uid="uid://cwtu6i45r7i5a"]
+
+[ext_resource type="Script" path="res://scenes/limbo.gd" id="1_xlfbi"]
+[ext_resource type="PackedScene" uid="uid://bgty0g4u5vpow" path="res://scenes/player.tscn" id="2_yidyk"]
 
 [node name="Limbo" type="Node2D"]
+script = ExtResource("1_xlfbi")
+
+[node name="Player" parent="." instance=ExtResource("2_yidyk")]
+position = Vector2(635, 476)

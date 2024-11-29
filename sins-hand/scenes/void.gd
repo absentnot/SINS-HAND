@@ -2,6 +2,8 @@ extends Node2D
 
 @onready var main = get_parent().get_parent().get_parent().get_parent()
 @onready var player = get_node_or_null("Player")
+
+var level = 0
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	main.updatePickable()

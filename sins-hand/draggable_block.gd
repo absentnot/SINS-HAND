@@ -11,6 +11,7 @@ func pickup():
 	#freeze = true
 	#position = position.slerp(position + Vector2(0.0, -20.0), 0.5)
 	held = true
+	%Pickup.play()
 
 func drop(impulse=Input.get_last_mouse_velocity() * mouse_speed):
 	if held:
@@ -18,6 +19,7 @@ func drop(impulse=Input.get_last_mouse_velocity() * mouse_speed):
 		#position = position.slerp(position + Vector2(0.0, +20.0), 0.5)
 		apply_impulse(impulse)
 		held = false
+		%Drop.play()
 
 #func _input(event):
 	#print(event.as_text())
@@ -50,9 +52,15 @@ func _on_area_2d_area_entered(area):
 	print(area.is_in_group("hands"))
 	if area.is_in_group("hands"):
 		inHandArea = true
-
+	
 
 
 func _on_area_2d_large_area_exited(area):
 	if area.is_in_group("hands"):
 		inHandArea = false
+
+
+func _on_area_2d_large_area_entered(area):
+	if area.get_name() =="PlayerArea":
+		$BumpIntoObject.pitch_scale = randf_range(0.85, 1.15)
+		$BumpIntoObject.play()

@@ -40,6 +40,10 @@ func nextLevel():
 	var nextLevel_inst = levels[level].instantiate()
 	current_level = nextLevel_inst
 	%MainViewport.add_child(current_level)
+	
+	if level == 1:
+		$Music.get_stream_playback().switch_to_clip_by_name("Limbo Music Loop")	
+	
 
 func blackTransition():
 	%BlackTransition.modulate.a = 1.0
@@ -49,7 +53,11 @@ func blackTransition():
 func whiteTransition():
 	print("TRANSITION")
 	%WhiteTransition.modulate.a = 0.0
+	
+	if level == 0:
+		$Atmosphere.get_stream_playback().switch_to_clip_by_name("Limbo Atmosphere")
+		
 	var tw = create_tween()
-	tw.tween_property(%WhiteTransition, "modulate:a", 1.0, 1.0)
+	tw.tween_property(%WhiteTransition, "modulate:a", 1.0, 1.5)
 	tw.tween_callback(nextLevel)
-	tw.tween_property(%WhiteTransition, "modulate:a", 0.0, 1.0)
+	tw.tween_property(%WhiteTransition, "modulate:a", 0.0, 1.5)

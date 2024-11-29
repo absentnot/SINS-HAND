@@ -1,10 +1,16 @@
-[gd_scene load_steps=13 format=3 uid="uid://bgty0g4u5vpow"]
+[gd_scene load_steps=21 format=3 uid="uid://bgty0g4u5vpow"]
 
 [ext_resource type="Script" path="res://player.gd" id="1_oqbyh"]
 [ext_resource type="PackedScene" uid="uid://dhxgiti4485us" path="res://scenes/SIN.tscn" id="2_rrvcv"]
 [ext_resource type="Texture2D" uid="uid://dalpole5wxuoc" path="res://assets/shadow.png" id="3_f0fnf"]
 [ext_resource type="Material" uid="uid://cb3v5k0c5r8ui" path="res://shaders/OutlineMaterial.tres" id="3_okq8a"]
 [ext_resource type="Script" path="res://scenes/player_cam.gd" id="5_6516o"]
+[ext_resource type="AudioStream" uid="uid://beh567gfeucgt" path="res://audio/sfx/Footstep1_Void_SH.ogg" id="6_esds5"]
+[ext_resource type="AudioStream" uid="uid://co667ppv3wfk4" path="res://audio/sfx/Footstep2_Void_SH.ogg" id="7_2hqgh"]
+[ext_resource type="AudioStream" uid="uid://dmqjpmmrd04va" path="res://audio/sfx/Footstep3_Void_SH.ogg" id="8_xuwem"]
+[ext_resource type="AudioStream" uid="uid://b3skolv0yb0oj" path="res://audio/sfx/Footstep1_Limbo_SH.ogg" id="9_fwaht"]
+[ext_resource type="AudioStream" uid="uid://do1k7pskbsh2p" path="res://audio/sfx/Footstep2_Limbo_SH.ogg" id="10_s733k"]
+[ext_resource type="AudioStream" uid="uid://bgys1nwamv0fc" path="res://audio/sfx/Footstep3_Limbo_SH.ogg" id="11_d2jiv"]
 
 [sub_resource type="Curve" id="Curve_x36ei"]
 _data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.78, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
@@ -41,6 +47,18 @@ height = 47.5
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_afkk7"]
 radius = 28.75
 height = 70.0
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_hakps"]
+streams_count = 3
+stream_0/stream = ExtResource("6_esds5")
+stream_1/stream = ExtResource("7_2hqgh")
+stream_2/stream = ExtResource("8_xuwem")
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_8vwls"]
+streams_count = 3
+stream_0/stream = ExtResource("9_fwaht")
+stream_1/stream = ExtResource("10_s733k")
+stream_2/stream = ExtResource("11_d2jiv")
 
 [node name="Player" type="CharacterBody2D"]
 texture_filter = 1
@@ -90,6 +108,17 @@ script = ExtResource("5_6516o")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerArea"]
 position = Vector2(0, 15)
 shape = SubResource("CapsuleShape2D_afkk7")
+
+[node name="VoidFootsteps" type="AudioStreamPlayer" parent="."]
+stream = SubResource("AudioStreamRandomizer_hakps")
+volume_db = -40.0
+max_polyphony = 4
+bus = &"SFX"
+
+[node name="LimboFootsteps" type="AudioStreamPlayer" parent="."]
+stream = SubResource("AudioStreamRandomizer_8vwls")
+volume_db = -43.0
+bus = &"SFX"
 
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
 [connection signal="area_entered" from="PlayerArea" to="." method="_on_player_area_area_entered"]

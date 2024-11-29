@@ -353,7 +353,7 @@ scale = Vector2(1, -1)
 [node name="MouthSprite" type="Sprite2D" parent="Visual/FaceSpriteGroup"]
 unique_name_in_owner = true
 z_index = 3
-position = Vector2(-18.9524, -69.9623)
+position = Vector2(-18.9524, -74.9928)
 texture = ExtResource("3_fms1n")
 offset = Vector2(0, 10)
 
@@ -361,7 +361,7 @@ offset = Vector2(0, 10)
 unique_name_in_owner = true
 modulate = Color(0.207843, 0.207843, 0.207843, 1)
 z_index = 3
-position = Vector2(-7.91286, -69.912)
+position = Vector2(-7.91287, -74.9932)
 rotation = -3.14159
 scale = Vector2(1, -1)
 texture = ExtResource("4_u02gq")
@@ -371,7 +371,7 @@ offset = Vector2(-2, 4)
 unique_name_in_owner = true
 modulate = Color(0.207843, 0.207843, 0.207843, 1)
 z_index = 3
-position = Vector2(-30.0875, -69.912)
+position = Vector2(-30.0875, -74.9932)
 texture = ExtResource("4_u02gq")
 offset = Vector2(-2, 4)
 
@@ -379,7 +379,7 @@ offset = Vector2(-2, 4)
 unique_name_in_owner = true
 z_index = 4
 y_sort_enabled = true
-position = Vector2(-7.00018, -72.3079)
+position = Vector2(-7.00019, -76.4941)
 rotation = 3.14159
 scale = Vector2(0.99998, -0.999978)
 texture = ExtResource("5_w1vhp")
@@ -389,14 +389,14 @@ offset = Vector2(0, -26)
 unique_name_in_owner = true
 z_index = 3
 y_sort_enabled = true
-position = Vector2(-31.0002, -72.3079)
+position = Vector2(-31.0002, -76.494)
 texture = ExtResource("5_w1vhp")
 offset = Vector2(0, -26)
 
 [node name="HornSideGroupL" type="Node2D" parent="Visual/FaceSpriteGroup"]
 unique_name_in_owner = true
 z_index = 3
-position = Vector2(7.99982, -72.3561)
+position = Vector2(7.99981, -75.695)
 rotation = -3.14159
 scale = Vector2(1, -1)
 
@@ -420,7 +420,7 @@ texture = ExtResource("7_bls4j")
 [node name="HornSideGroupR" type="Node2D" parent="Visual/FaceSpriteGroup"]
 unique_name_in_owner = true
 z_index = 1
-position = Vector2(-46.0002, -72.356)
+position = Vector2(-46.0002, -75.6948)
 
 [node name="HornSideBaseSpriteR" type="Sprite2D" parent="Visual/FaceSpriteGroup/HornSideGroupR"]
 unique_name_in_owner = true
@@ -500,7 +500,7 @@ update_scale = false
 
 [node name="HornsSideAnchor" type="Node2D" parent="Rig"]
 unique_name_in_owner = true
-position = Vector2(0, 134.392)
+position = Vector2(0, -199.495)
 rotation = 4.71239
 
 [node name="HornSideL" type="RemoteTransform2D" parent="Rig/HornsSideAnchor"]
@@ -519,7 +519,7 @@ update_scale = false
 
 [node name="HornsTopAnchor" type="Node2D" parent="Rig"]
 unique_name_in_owner = true
-position = Vector2(0, 169.205)
+position = Vector2(0, -249.409)
 rotation = 4.71239
 
 [node name="HornTopL" type="RemoteTransform2D" parent="Rig/HornsTopAnchor"]
