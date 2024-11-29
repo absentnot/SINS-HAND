@@ -42,6 +42,7 @@ func _process(delta):
 		#inverse_target = inverse_target - (inverse_target - points[0]).normalized() * player_node.position.distance_to(inverse_target) / 2.0
 		if player_node.position.distance_to(inverse_target) >= num_segments * length * 1.2:
 			inverse_target = player_node.position + (inverse_target - points[0]).normalized() *  num_segments * length
+		print(inverse_target)
 	elif is_start:
 		#print(get_parent().get_parent().get_parent().get_parent())
 		#var anchor_global_position = player_node.global_position + player_node.global_transform.basis_xform(anchor_offset)

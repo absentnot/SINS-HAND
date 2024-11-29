@@ -3,7 +3,7 @@ signal clicked
 
 var held = false
 var inHandArea = false			
-var mouse_speed = 5.0
+var mouse_speed = 8.0
 func pickup():
 	print("GRAB!")
 	if held:

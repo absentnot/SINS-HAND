@@ -8,7 +8,7 @@ var mouse_speed = 5.0
 var level = 0
 
 func _unhandled_input(event):
-	if event.is_action_released("grab") and held_object:
+	if event.is_action_released("grab") and held_object and is_instance_valid(held_object):
 		print("DROP!")
 		held_object.drop(Input.get_last_mouse_velocity() * mouse_speed)
 		held_object = null

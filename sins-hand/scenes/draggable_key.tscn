@@ -1,0 +1,100 @@
+[gd_scene load_steps=16 format=3 uid="uid://c0itju8lnmoug"]
+
+[ext_resource type="Script" path="res://draggable_block.gd" id="1_7j0ij"]
+[ext_resource type="Texture2D" uid="uid://c6qx7xywr073r" path="res://assets/key.png" id="2_futqd"]
+[ext_resource type="AudioStream" uid="uid://fvqsi0j2b63e" path="res://audio/sfx/BumpIntoObject.ogg" id="3_03fhm"]
+[ext_resource type="AudioStream" uid="uid://dps2c7fle1skd" path="res://audio/sfx/Select_Limbo_SH.ogg" id="4_7fauh"]
+[ext_resource type="AudioStream" uid="uid://crdkuwy7ub2jp" path="res://audio/sfx/DeSelect_Limbo_SH.ogg" id="5_07iqh"]
+[ext_resource type="Texture2D" uid="uid://dvdvrtji07q8l" path="res://assets/start-part.png" id="6_ilcay"]
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_8hqyp"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_h50pn"]
+radius = 24.0208
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_0ag5t"]
+radius = 10.198
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_cuump"]
+radius = 46.0
+
+[sub_resource type="Curve" id="Curve_3qewv"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(1, 0.461538), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_7pkmg"]
+curve = SubResource("Curve_3qewv")
+
+[sub_resource type="Curve" id="Curve_1b1i1"]
+_data = [Vector2(0.0133333, 0.56044), 0.0, 0.0, 0, 0, Vector2(0.133333, 0.582418), 0.0, 0.0, 0, 0, Vector2(1, 0.241758), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_qb6xm"]
+curve = SubResource("Curve_1b1i1")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_pefec"]
+particle_flag_disable_z = true
+emission_shape = 1
+emission_sphere_radius = 39.83
+direction = Vector3(0, -1, 0)
+initial_velocity_max = 154.93
+gravity = Vector3(0, 98, 0)
+scale_curve = SubResource("CurveTexture_qb6xm")
+alpha_curve = SubResource("CurveTexture_7pkmg")
+
+[node name="DraggableKey" type="RigidBody2D" groups=["pickable"]]
+z_index = -10
+y_sort_enabled = true
+texture_filter = 1
+collision_layer = 4
+collision_mask = 12
+mass = 10.0
+physics_material_override = SubResource("PhysicsMaterial_8hqyp")
+gravity_scale = 0.0
+max_contacts_reported = 5
+linear_damp = 2.0
+angular_damp = 2.0
+script = ExtResource("1_7j0ij")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_h50pn")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+modulate = Color(0.694118, 0.490196, 0.203922, 1)
+y_sort_enabled = true
+texture_filter = 1
+scale = Vector2(2, 2)
+texture = ExtResource("2_futqd")
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("CircleShape2D_0ag5t")
+
+[node name="KeyArea2DLarge" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="KeyArea2DLarge"]
+shape = SubResource("CircleShape2D_cuump")
+
+[node name="BumpIntoObject" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("3_03fhm")
+
+[node name="Pickup" type="AudioStreamPlayer2D" parent="."]
+unique_name_in_owner = true
+stream = ExtResource("4_7fauh")
+volume_db = -10.0
+
+[node name="Drop" type="AudioStreamPlayer2D" parent="."]
+unique_name_in_owner = true
+stream = ExtResource("5_07iqh")
+volume_db = -10.0
+
+[node name="CPUParticles2D" type="GPUParticles2D" parent="."]
+amount = 4
+process_material = SubResource("ParticleProcessMaterial_pefec")
+texture = ExtResource("6_ilcay")
+explosiveness = 0.27
+
+[connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]
+[connection signal="area_entered" from="KeyArea2DLarge" to="." method="_on_area_2d_large_area_entered"]
+[connection signal="area_exited" from="KeyArea2DLarge" to="." method="_on_area_2d_large_area_exited"]

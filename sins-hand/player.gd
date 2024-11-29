@@ -16,6 +16,8 @@ var shake_dampen = 300.0
 var move_speed = 300.0
 var sprint_speed = 500.0
 
+var knockback_velocity = Vector2(0.0, 0.0)
+
 @onready var parent_level = get_parent()
 
 func _ready():
@@ -99,7 +101,10 @@ func _physics_process(delta):
 	var input = Input.get_vector("left", "right", "up", "down")
 	var is_sprinting : bool = Input.is_action_pressed("sprint")
 	
-	velocity = input.normalized() * (sprint_speed if is_sprinting else move_speed)
+	
+	velocity = input.normalized() * (sprint_speed if is_sprinting else move_speed) + knockback_velocity
+	
+	knockback_velocity = knockback_velocity.lerp(Vector2(0.0, 0.0), 0.1)
 	#print(velocity)
 	move_and_slide()
 	for i in get_slide_collision_count():
@@ -111,7 +116,8 @@ func _physics_process(delta):
 		#position.y *= -1
 	
 func knockback(pos, str):
-	velocity = (position - pos).normalized() * str
+	knockback_velocity = (position - pos).normalized() * str
+	move_and_slide()
 
 func tween_rotation(degree):
 	var input = Input.get_vector("left", "right", "up", "down")
@@ -127,9 +133,13 @@ func _on_player_area_area_entered(area):
 	if area.get_name() == "GateLocalArea" and closestGate.is_open:
 		move_speed = 90
 		sprint_speed = 150
+	if area.get_name() == "BehindGateArea":
+		closestGate.z_index = 10
 
 
 func _on_player_area_area_exited(area):
 	if area.get_name() == "GateLocalArea":
 		move_speed = 300
 		sprint_speed = 500
+	if area.get_name() == "BehindGateArea":
+		closestGate.z_index = -10

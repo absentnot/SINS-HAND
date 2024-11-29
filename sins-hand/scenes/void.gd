@@ -18,4 +18,4 @@ func _process(delta):
 
 
 func _on_gate_gate_opened():
-	player.knockback($GATE.position, 1000.0)
+	player.knockback($GATE.position, 2500.0)

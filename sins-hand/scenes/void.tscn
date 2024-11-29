@@ -1,4 +1,4 @@
-[gd_scene load_steps=24 format=3 uid="uid://mnjnk0imid2f"]
+[gd_scene load_steps=25 format=3 uid="uid://mnjnk0imid2f"]
 
 [ext_resource type="Material" uid="uid://cb3v5k0c5r8ui" path="res://shaders/OutlineMaterial.tres" id="1_aur5r"]
 [ext_resource type="PackedScene" uid="uid://bgty0g4u5vpow" path="res://scenes/player.tscn" id="1_scwxu"]
@@ -12,6 +12,7 @@
 [ext_resource type="PackedScene" uid="uid://bbiwn4twu8fbu" path="res://scenes/draggable_block.tscn" id="9_3uoyd"]
 [ext_resource type="PackedScene" uid="uid://bh7iue4veisdy" path="res://scenes/draggable_block_small.tscn" id="10_74c25"]
 [ext_resource type="PackedScene" uid="uid://cufl48ta1affi" path="res://scenes/draggable_block_tiny.tscn" id="12_jaqq6"]
+[ext_resource type="PackedScene" uid="uid://c0itju8lnmoug" path="res://scenes/draggable_key.tscn" id="13_3wqyr"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_2reb4"]
 size = Vector2(284, 3460.5)
@@ -174,7 +175,8 @@ randomness = 0.3
 visibility_rect = Rect2(-2000, -1500, 4000, 3500)
 
 [node name="GATE" parent="." instance=ExtResource("6_h3cxf")]
-z_index = -5
+z_index = -10
+y_sort_enabled = true
 position = Vector2(0, -1516)
 
 [node name="GPUParticles2D" type="GPUParticles2D" parent="GATE"]
@@ -196,7 +198,7 @@ position = Vector2(6, -1805)
 shape = SubResource("CircleShape2D_x60fx")
 
 [node name="Snowpatch" type="Sprite2D" parent="."]
-z_index = -8
+z_index = -11
 position = Vector2(-4, -1352)
 texture = ExtResource("7_0cm8c")
 
@@ -267,6 +269,7 @@ position = Vector2(-957, 803)
 position = Vector2(701, 591)
 
 [node name="DraggableBlock22" parent="asteroids" instance=ExtResource("9_1u66g")]
+z_index = -4
 position = Vector2(-816, 540)
 
 [node name="DraggableBlock23" parent="asteroids" instance=ExtResource("9_3uoyd")]
@@ -430,5 +433,9 @@ position = Vector2(-60, 1711)
 
 [node name="DraggableBlock76" parent="asteroids" instance=ExtResource("12_jaqq6")]
 position = Vector2(-916, -24)
+
+[node name="DraggableKey" parent="." instance=ExtResource("13_3wqyr")]
+z_index = -5
+position = Vector2(-820, -811)
 
 [connection signal="gateOpened" from="GATE" to="." method="_on_gate_gate_opened"]

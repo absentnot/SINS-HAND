@@ -1,9 +1,10 @@
-[gd_scene load_steps=21 format=3 uid="uid://bgty0g4u5vpow"]
+[gd_scene load_steps=23 format=3 uid="uid://bgty0g4u5vpow"]
 
 [ext_resource type="Script" path="res://player.gd" id="1_oqbyh"]
 [ext_resource type="PackedScene" uid="uid://dhxgiti4485us" path="res://scenes/SIN.tscn" id="2_rrvcv"]
 [ext_resource type="Texture2D" uid="uid://dalpole5wxuoc" path="res://assets/shadow.png" id="3_f0fnf"]
 [ext_resource type="Material" uid="uid://cb3v5k0c5r8ui" path="res://shaders/OutlineMaterial.tres" id="3_okq8a"]
+[ext_resource type="Texture2D" uid="uid://djlvugfckrowu" path="res://assets/particleanimation.png" id="4_mih5e"]
 [ext_resource type="Script" path="res://scenes/player_cam.gd" id="5_6516o"]
 [ext_resource type="AudioStream" uid="uid://beh567gfeucgt" path="res://audio/sfx/Footstep1_Void_SH.ogg" id="6_esds5"]
 [ext_resource type="AudioStream" uid="uid://co667ppv3wfk4" path="res://audio/sfx/Footstep2_Void_SH.ogg" id="7_2hqgh"]
@@ -11,6 +12,12 @@
 [ext_resource type="AudioStream" uid="uid://b3skolv0yb0oj" path="res://audio/sfx/Footstep1_Limbo_SH.ogg" id="9_fwaht"]
 [ext_resource type="AudioStream" uid="uid://do1k7pskbsh2p" path="res://audio/sfx/Footstep2_Limbo_SH.ogg" id="10_s733k"]
 [ext_resource type="AudioStream" uid="uid://bgys1nwamv0fc" path="res://audio/sfx/Footstep3_Limbo_SH.ogg" id="11_d2jiv"]
+
+[sub_resource type="CanvasItemMaterial" id="CanvasItemMaterial_b8c6g"]
+particles_animation = true
+particles_anim_h_frames = 5
+particles_anim_v_frames = 1
+particles_anim_loop = false
 
 [sub_resource type="Curve" id="Curve_x36ei"]
 _data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.78, 1), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
@@ -35,10 +42,12 @@ direction = Vector3(0, -1, 0)
 initial_velocity_min = 10.0
 initial_velocity_max = 50.0
 gravity = Vector3(0, -5, 0)
-scale_min = 0.0
-scale_max = 0.3
+scale_min = 1.5
+scale_max = 2.5
 scale_curve = SubResource("CurveTexture_fpj4k")
 alpha_curve = SubResource("CurveTexture_fmyu2")
+anim_speed_min = 1.0
+anim_speed_max = 1.0
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_fejgy"]
 radius = 23.75
@@ -63,7 +72,8 @@ stream_2/stream = ExtResource("11_d2jiv")
 [node name="Player" type="CharacterBody2D"]
 texture_filter = 1
 scale = Vector2(0.8, 0.8)
-collision_mask = 3
+collision_layer = 9
+collision_mask = 11
 script = ExtResource("1_oqbyh")
 
 [node name="SIN" parent="." instance=ExtResource("2_rrvcv")]
@@ -73,12 +83,13 @@ material = ExtResource("3_okq8a")
 [node name="DustParticles" type="GPUParticles2D" parent="."]
 unique_name_in_owner = true
 z_index = -5
+material = SubResource("CanvasItemMaterial_b8c6g")
 position = Vector2(0, 53)
 scale = Vector2(0.528164, 0.197754)
 emitting = false
 amount = 10
 process_material = SubResource("ParticleProcessMaterial_te8cr")
-texture = ExtResource("3_f0fnf")
+texture = ExtResource("4_mih5e")
 lifetime = 0.6
 
 [node name="Shadow" type="Sprite2D" parent="."]
