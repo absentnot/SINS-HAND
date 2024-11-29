@@ -1,10 +1,11 @@
-[gd_scene load_steps=18 format=3 uid="uid://kfhvj854jqqd"]
+[gd_scene load_steps=19 format=3 uid="uid://kfhvj854jqqd"]
 
 [ext_resource type="Texture2D" uid="uid://c0qq43b0bu5le" path="res://assets/gate-VOID.png" id="1_bso6d"]
 [ext_resource type="Script" path="res://scenes/void_gate.gd" id="1_wy6jb"]
 [ext_resource type="Shader" path="res://shaders/dynamic-glow.gdshader" id="2_0ca53"]
 [ext_resource type="Texture2D" uid="uid://dwec1u6a2iq8e" path="res://assets/gate-VOID-inverted.png" id="3_3b53a"]
 [ext_resource type="Shader" path="res://shaders/glow.gdshader" id="3_d08c8"]
+[ext_resource type="AudioStream" uid="uid://c27nmfvlurl5r" path="res://audio/sfx/PortalHumLoop_Void_SH.ogg" id="6_paudw"]
 
 [sub_resource type="Curve" id="Curve_2465f"]
 _data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.393333, 1), 0.0, 0.0, 0, 0]
@@ -100,5 +101,12 @@ shape = SubResource("CapsuleShape2D_c8bwm")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="GateLocalArea"]
 shape = SubResource("CircleShape2D_fvgwf")
+
+[node name="PortalHum" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("6_paudw")
+autoplay = true
+max_distance = 1500.0
+attenuation = 1.5
+bus = &"SFX"
 
 [connection signal="area_entered" from="GateArea" to="." method="_on_gate_area_area_entered"]

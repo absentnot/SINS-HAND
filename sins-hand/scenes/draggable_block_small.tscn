@@ -1,7 +1,8 @@
-[gd_scene load_steps=7 format=3 uid="uid://bh7iue4veisdy"]
+[gd_scene load_steps=8 format=3 uid="uid://bh7iue4veisdy"]
 
 [ext_resource type="Script" path="res://draggable_block.gd" id="1_seods"]
 [ext_resource type="Texture2D" uid="uid://ccwt8lvb7c666" path="res://assets/square.png" id="2_ymr7q"]
+[ext_resource type="AudioStream" uid="uid://crdkuwy7ub2jp" path="res://audio/sfx/DeSelect_Limbo_SH.ogg" id="3_qtdbx"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_8hqyp"]
 
@@ -45,6 +46,10 @@ shape = SubResource("RectangleShape2D_bkhwe")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2DLarge"]
 shape = SubResource("RectangleShape2D_xsv71")
+
+[node name="BumpIntoObject" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("3_qtdbx")
+pitch_scale = 0.14
 
 [connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]
 [connection signal="area_exited" from="Area2DLarge" to="." method="_on_area_2d_large_area_exited"]
