@@ -1,0 +1,67 @@
+[gd_scene load_steps=10 format=3 uid="uid://3o56liww6vlj"]
+
+[ext_resource type="Script" path="res://draggable_block.gd" id="1_8sk2q"]
+[ext_resource type="Texture2D" uid="uid://brypdsekdhct6" path="res://assets/limboman.png" id="2_gmjcj"]
+[ext_resource type="AudioStream" uid="uid://dps2c7fle1skd" path="res://audio/sfx/Select_Limbo_SH.ogg" id="3_83rjj"]
+[ext_resource type="AudioStream" uid="uid://crdkuwy7ub2jp" path="res://audio/sfx/DeSelect_Limbo_SH.ogg" id="4_1tclp"]
+[ext_resource type="AudioStream" uid="uid://fvqsi0j2b63e" path="res://audio/sfx/BumpIntoObject.ogg" id="5_7qtql"]
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_8hqyp"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_gqwk3"]
+size = Vector2(15, 15)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_bkhwe"]
+size = Vector2(10, 10)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_xsv71"]
+size = Vector2(50, 50)
+
+[node name="DraggablePerson" type="RigidBody2D" groups=["pickable"]]
+y_sort_enabled = true
+collision_layer = 2
+collision_mask = 3
+mass = 20.0
+physics_material_override = SubResource("PhysicsMaterial_8hqyp")
+gravity_scale = 0.0
+inertia = 1.0
+linear_damp = 2.0
+angular_damp = 5.0
+script = ExtResource("1_8sk2q")
+rotatable = false
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_gqwk3")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+y_sort_enabled = true
+texture_filter = 1
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("2_gmjcj")
+
+[node name="LimboManArea2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="LimboManArea2D"]
+shape = SubResource("RectangleShape2D_bkhwe")
+
+[node name="Area2DLarge" type="Area2D" parent="." groups=["edible"]]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2DLarge"]
+shape = SubResource("RectangleShape2D_xsv71")
+
+[node name="Pickup" type="AudioStreamPlayer2D" parent="."]
+unique_name_in_owner = true
+stream = ExtResource("3_83rjj")
+volume_db = -10.0
+
+[node name="Drop" type="AudioStreamPlayer2D" parent="."]
+unique_name_in_owner = true
+stream = ExtResource("4_1tclp")
+volume_db = -10.0
+
+[node name="BumpIntoObject" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("5_7qtql")
+
+[connection signal="area_entered" from="LimboManArea2D" to="." method="_on_area_2d_area_entered"]
+[connection signal="area_entered" from="Area2DLarge" to="." method="_on_area_2d_large_area_entered"]
+[connection signal="area_exited" from="Area2DLarge" to="." method="_on_area_2d_large_area_exited"]

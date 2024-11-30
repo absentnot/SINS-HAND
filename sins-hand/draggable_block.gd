@@ -1,10 +1,15 @@
 extends RigidBody2D
 signal clicked
 
+@export var rotatable = true
+@export var pickable = true
+
 var held = false
 var inHandArea = false			
 var mouse_speed = 8.0
 func pickup():
+	if !pickable:
+		return
 	print("GRAB!")
 	if held:
 		return
@@ -32,7 +37,8 @@ func drop(impulse=Input.get_last_mouse_velocity() * mouse_speed):
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	randomize()
-	rotation = randf_range(-PI, PI)
+	if rotatable:
+		rotation = randf_range(-PI, PI)
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.

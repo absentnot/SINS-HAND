@@ -44,6 +44,13 @@ func nextLevel():
 	
 	if level == 1:
 		$Music.get_stream_playback().switch_to_clip_by_name("Limbo Music Loop")	
+		
+	if level == 2:
+		%BlackTransition.modulate.a = 1.0
+		$HUD/HUD/TitleCenterContainer.modulate.a = 1.0
+		$HUD/HUD/TitleCenterContainer/VBoxContainer/START.visible = false
+		$HUD/HUD/TitleCenterContainer/VBoxContainer/THANKS.visible= true
+		$HUD/HUD/TitleCenterContainer/VBoxContainer/THANKS2.visible= true
 	
 
 func blackTransition():
@@ -58,6 +65,9 @@ func whiteTransition():
 	
 	if level == 0:
 		$Atmosphere.get_stream_playback().switch_to_clip_by_name("Limbo Atmosphere")
+	
+	if level == 1:
+		$Atmosphere.get_stream_playback().switch_to_clip_by_name("Void Atmosphere")
 		
 	var tw = create_tween()
 	tw.tween_property(%WhiteTransition, "modulate:a", 1.0, 1.5)

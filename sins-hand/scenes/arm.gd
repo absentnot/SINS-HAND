@@ -38,11 +38,11 @@ func _process(delta):
 
 		#inverse_target = player_node.position + get_viewport().get_mouse_position() - screen_center + Vector2(0.0, 15.0) # adjustment for anchor positioning
 		#print(get_viewport().get_camera_2d().offset)
-		inverse_target = player_node.position + get_viewport().get_mouse_position() - screen_size - Vector2(210.0, 30.0) + (get_viewport().get_camera_2d().get_screen_center_position() - player_node.position) # adjustment for camera offset
+		inverse_target = player_node.position + get_viewport().get_mouse_position() - screen_center + Vector2(0.0, 15.0) + (get_viewport().get_camera_2d().get_screen_center_position() - player_node.position) # adjustment for camera offset
 		#inverse_target = inverse_target - (inverse_target - points[0]).normalized() * player_node.position.distance_to(inverse_target) / 2.0
 		if player_node.position.distance_to(inverse_target) >= num_segments * length * 1.2:
 			inverse_target = player_node.position + (inverse_target - points[0]).normalized() *  num_segments * length
-		print(inverse_target)
+
 	elif is_start:
 		#print(get_parent().get_parent().get_parent().get_parent())
 		#var anchor_global_position = player_node.global_position + player_node.global_transform.basis_xform(anchor_offset)

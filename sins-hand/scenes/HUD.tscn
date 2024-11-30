@@ -93,4 +93,26 @@ theme_override_styles/normal_mirrored = SubResource("StyleBoxEmpty_d1ohq")
 theme_override_styles/normal = SubResource("StyleBoxEmpty_ofsul")
 text = "START"
 
+[node name="THANKS" type="RichTextLabel" parent="TitleCenterContainer/VBoxContainer"]
+visible = false
+custom_minimum_size = Vector2(0, 100)
+layout_mode = 2
+theme_override_fonts/normal_font = ExtResource("4_b8gcp")
+theme_override_font_sizes/normal_font_size = 28
+bbcode_enabled = true
+text = "[center]THANKS FOR PLAYING!
+GAME OFF 2024[/center]"
+
+[node name="THANKS2" type="RichTextLabel" parent="TitleCenterContainer/VBoxContainer"]
+visible = false
+custom_minimum_size = Vector2(0, 100)
+layout_mode = 2
+theme_override_colors/default_color = Color(0.462291, 0.462291, 0.462291, 1)
+theme_override_fonts/normal_font = ExtResource("4_b8gcp")
+theme_override_font_sizes/normal_font_size = 16
+bbcode_enabled = true
+text = "[left]not_absent :        programming, art
+Duncan Cook:              Music, SFX
+Javier S. Dacarett:    Audio support[/left]"
+
 [connection signal="pressed" from="TitleCenterContainer/VBoxContainer/START" to="." method="_on_start_pressed"]

@@ -6,7 +6,7 @@ signal gateOpened
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	$PortalHum.volume_db = -5
+	$PortalHum.volume_db = 0
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -46,6 +46,7 @@ func open():
 func _on_animated_sprite_2d_animation_finished():
 	$AnimatedSprite2D.stop()
 	$AnimatedSprite2D.visible = false
+	$GateBarsInverted.visible = false
 	open()
 
 
@@ -55,3 +56,4 @@ func _on_key_area_area_entered(area):
 	if area.get_name() == "KeyArea2DLarge" and !is_open:
 		area.get_parent().queue_free()
 		$AnimatedSprite2D.play()
+		$GateBarsInverted.play()

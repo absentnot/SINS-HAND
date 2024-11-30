@@ -26,6 +26,8 @@ window/stretch/mode="viewport"
 arm_Seg=""
 hands=""
 level=""
+z-index-fix=""
+edible=""
 
 [input]
 

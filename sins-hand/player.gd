@@ -76,7 +76,8 @@ func _process(delta):
 	if Input.is_action_pressed("grab") and !reflection:
 		# Get the screen size (viewport dimensions)
 		var screen_size = get_viewport().get_visible_rect().size
-		var inverse_target = position + get_viewport().get_mouse_position() - screen_size - Vector2(210.0, 30.0) + (get_viewport().get_camera_2d().get_screen_center_position() - position) # adjustment for camera offset
+		var screen_center = screen_size * 0.5
+		var inverse_target = position + get_viewport().get_mouse_position() - screen_center  + Vector2(0.0, 15.0) + (get_viewport().get_camera_2d().get_screen_center_position() - position) # adjustment for camera offset
 		var mouse_dir = (inverse_target - position).normalized()
 		sin.direction = rotate_toward(sin.direction, -atan2(mouse_dir.x, mouse_dir.y), 10.0 * delta)
 	
@@ -135,6 +136,9 @@ func _on_player_area_area_entered(area):
 		sprint_speed = 150
 	if area.get_name() == "BehindGateArea":
 		closestGate.z_index = 10
+		
+	if area.is_in_group("z-index-fix"):
+		area.get_parent().z_index = 10
 
 
 func _on_player_area_area_exited(area):
@@ -143,3 +147,6 @@ func _on_player_area_area_exited(area):
 		sprint_speed = 500
 	if area.get_name() == "BehindGateArea":
 		closestGate.z_index = -10
+	
+	if area.is_in_group("z-index-fix"):
+		area.get_parent().z_index = -9

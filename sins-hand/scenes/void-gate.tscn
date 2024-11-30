@@ -1,4 +1,4 @@
-[gd_scene load_steps=24 format=3 uid="uid://kfhvj854jqqd"]
+[gd_scene load_steps=33 format=3 uid="uid://kfhvj854jqqd"]
 
 [ext_resource type="Script" path="res://scenes/void_gate.gd" id="1_wy6jb"]
 [ext_resource type="Texture2D" uid="uid://bdg7pay14i58u" path="res://assets/gate.png" id="2_f3owe"]
@@ -8,6 +8,7 @@
 [ext_resource type="Material" uid="uid://d2osj3pljx1kr" path="res://shaders/gate-glow-mat.tres" id="4_y7jxw"]
 [ext_resource type="AudioStream" uid="uid://c27nmfvlurl5r" path="res://audio/sfx/PortalHumLoop_Void_SH.ogg" id="6_paudw"]
 [ext_resource type="Texture2D" uid="uid://dkoujeliu1xqx" path="res://assets/gate-open-spritesheet.png" id="7_gx80g"]
+[ext_resource type="Texture2D" uid="uid://gdqv7yjih3fd" path="res://assets/gate-open-spritesheet-inverted.png" id="9_00hih"]
 [ext_resource type="AudioStream" uid="uid://dps2c7fle1skd" path="res://audio/sfx/Select_Limbo_SH.ogg" id="9_sf8vi"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_1f4pq"]
@@ -88,6 +89,63 @@ animations = [{
 [sub_resource type="CircleShape2D" id="CircleShape2D_2ga3w"]
 radius = 37.0135
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_kx3eg"]
+atlas = ExtResource("9_00hih")
+region = Rect2(0, 0, 300, 330)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8vnik"]
+atlas = ExtResource("9_00hih")
+region = Rect2(300, 0, 300, 330)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ukr5g"]
+atlas = ExtResource("9_00hih")
+region = Rect2(600, 0, 300, 330)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_nfjls"]
+atlas = ExtResource("9_00hih")
+region = Rect2(900, 0, 300, 330)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ydcn4"]
+atlas = ExtResource("9_00hih")
+region = Rect2(1200, 0, 300, 330)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_h7x1s"]
+atlas = ExtResource("9_00hih")
+region = Rect2(1500, 0, 300, 330)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ys03r"]
+atlas = ExtResource("9_00hih")
+region = Rect2(1800, 0, 300, 330)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_saumm"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_kx3eg")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8vnik")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ukr5g")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_nfjls")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ydcn4")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_h7x1s")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ys03r")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_10whr"]
 size = Vector2(292, 212)
 
@@ -152,6 +210,10 @@ sprite_frames = SubResource("SpriteFrames_mtysx")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="AnimatedSprite2D/KeyArea"]
 position = Vector2(0, 10)
 shape = SubResource("CircleShape2D_2ga3w")
+
+[node name="GateBarsInverted" type="AnimatedSprite2D" parent="."]
+material = ExtResource("4_y7jxw")
+sprite_frames = SubResource("SpriteFrames_saumm")
 
 [node name="Pickup" type="AudioStreamPlayer2D" parent="."]
 unique_name_in_owner = true

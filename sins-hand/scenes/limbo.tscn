@@ -1,16 +1,643 @@
-[gd_scene load_steps=4 format=3 uid="uid://cwtu6i45r7i5a"]
+[gd_scene load_steps=23 format=3 uid="uid://cwtu6i45r7i5a"]
 
 [ext_resource type="Script" path="res://scenes/limbo.gd" id="1_xlfbi"]
 [ext_resource type="PackedScene" uid="uid://bgty0g4u5vpow" path="res://scenes/player.tscn" id="2_yidyk"]
 [ext_resource type="PackedScene" uid="uid://kfhvj854jqqd" path="res://scenes/void-gate.tscn" id="3_ur1ty"]
+[ext_resource type="Texture2D" uid="uid://cwvhjj4ol4r0f" path="res://assets/snowpatch.png" id="5_ey5ol"]
+[ext_resource type="Texture2D" uid="uid://dun1q1hru2qcs" path="res://assets/roads.png" id="7_28e2x"]
+[ext_resource type="Texture2D" uid="uid://b45hbmm583vhc" path="res://assets/snow-patch-2.png" id="8_8er7q"]
+[ext_resource type="PackedScene" uid="uid://pdbvahr114gg" path="res://scenes/unbroken_pillar.tscn" id="8_vlx5l"]
+[ext_resource type="Texture2D" uid="uid://c6x8n64rwhe85" path="res://assets/gate-wall.png" id="9_kasbg"]
+[ext_resource type="PackedScene" uid="uid://c345rst580ibi" path="res://scenes/broken_pillar.tscn" id="9_kl2fg"]
+[ext_resource type="Texture2D" uid="uid://q1spkju8l3av" path="res://assets/deerspikes.png" id="10_avp7r"]
+[ext_resource type="PackedScene" uid="uid://dt2miwu86nht3" path="res://scenes/tree.tscn" id="10_kr37e"]
+[ext_resource type="PackedScene" uid="uid://3o56liww6vlj" path="res://scenes/draggable_person.tscn" id="12_ir8n6"]
+[ext_resource type="Texture2D" uid="uid://bsd2or72y66ya" path="res://assets/spikered.png" id="13_v0lxq"]
+[ext_resource type="Texture2D" uid="uid://brypdsekdhct6" path="res://assets/limboman.png" id="14_jrrvb"]
+[ext_resource type="PackedScene" uid="uid://bh7iue4veisdy" path="res://scenes/draggable_block_small.tscn" id="15_jqp6s"]
+[ext_resource type="PackedScene" uid="uid://cufl48ta1affi" path="res://scenes/draggable_block_tiny.tscn" id="16_3vh6r"]
+[ext_resource type="PackedScene" uid="uid://pvbtem4jsufi" path="res://scenes/cage.tscn" id="17_s833d"]
+[ext_resource type="PackedScene" uid="uid://c0itju8lnmoug" path="res://scenes/draggable_key.tscn" id="18_b13u3"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_jg8j6"]
+size = Vector2(3706, 300.5)
+
+[sub_resource type="Gradient" id="Gradient_ytli8"]
+offsets = PackedFloat32Array(0, 0.457831, 1)
+colors = PackedColorArray(0.0941176, 0.0901961, 0.0901961, 1, 0.0941176, 0.0901961, 0.0901961, 1, 0, 0, 0, 0)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_keqcp"]
+gradient = SubResource("Gradient_ytli8")
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_jgpgh"]
+size = Vector2(409, 206)
 
 [node name="Limbo" type="Node2D"]
 texture_filter = 1
 script = ExtResource("1_xlfbi")
 
 [node name="Player" parent="." instance=ExtResource("2_yidyk")]
-position = Vector2(635, 476)
+position = Vector2(645, 422)
 
 [node name="GATE" parent="." instance=ExtResource("3_ur1ty")]
 z_index = -10
-position = Vector2(639, 332)
+position = Vector2(644, -18)
+
+[node name="Snowpatch" type="Sprite2D" parent="."]
+z_index = -10
+position = Vector2(484, 729)
+texture = ExtResource("5_ey5ol")
+
+[node name="Snowpatch2" type="Sprite2D" parent="."]
+z_index = -11
+position = Vector2(741, 532)
+scale = Vector2(-2.4, 2)
+texture = ExtResource("5_ey5ol")
+
+[node name="Snowpatch3" type="Sprite2D" parent="."]
+modulate = Color(0.847474, 0.847474, 0.847474, 1)
+z_index = -21
+position = Vector2(1804, 270)
+scale = Vector2(-2.4, 2)
+texture = ExtResource("5_ey5ol")
+
+[node name="Snowpatch4" type="Sprite2D" parent="."]
+modulate = Color(0.654232, 0.654232, 0.654232, 1)
+z_index = -21
+position = Vector2(1195, 2230)
+scale = Vector2(-3.34492, 2.78743)
+texture = ExtResource("5_ey5ol")
+
+[node name="Roads" type="Sprite2D" parent="."]
+z_index = -12
+position = Vector2(605, 1091)
+texture = ExtResource("7_28e2x")
+
+[node name="Snow-patch-2" type="Sprite2D" parent="."]
+z_index = -13
+position = Vector2(906, 882)
+scale = Vector2(2, 2)
+texture = ExtResource("8_8er7q")
+
+[node name="Snow-patch-4" type="Sprite2D" parent="."]
+z_index = -13
+position = Vector2(-522, 1174)
+texture = ExtResource("8_8er7q")
+
+[node name="Snow-patch-3" type="Sprite2D" parent="."]
+modulate = Color(0.89059, 0.89059, 0.89059, 1)
+z_index = -14
+position = Vector2(618, 1031)
+scale = Vector2(-2.5, 2.5)
+texture = ExtResource("8_8er7q")
+
+[node name="Gate-wall" type="Sprite2D" parent="."]
+z_index = -20
+position = Vector2(644, -152)
+scale = Vector2(1.2, 1.2)
+texture = ExtResource("9_kasbg")
+
+[node name="UnbrokenPillar" parent="." instance=ExtResource("8_vlx5l")]
+position = Vector2(459, 653)
+
+[node name="UnbrokenPillar2" parent="." instance=ExtResource("8_vlx5l")]
+position = Vector2(821, 658)
+scale = Vector2(-1, 1)
+
+[node name="UnbrokenPillar3" parent="." instance=ExtResource("8_vlx5l")]
+position = Vector2(451, 237)
+scale = Vector2(-1, 1)
+
+[node name="UnbrokenPillar4" parent="." instance=ExtResource("8_vlx5l")]
+position = Vector2(826, 245)
+
+[node name="BrokenPillar" parent="." instance=ExtResource("9_kl2fg")]
+position = Vector2(912, 434)
+scale = Vector2(-1, 1)
+
+[node name="BrokenPillar2" parent="." instance=ExtResource("9_kl2fg")]
+position = Vector2(361, 438)
+
+[node name="Deerspikes" type="Sprite2D" parent="."]
+position = Vector2(1184, 2337)
+scale = Vector2(1.5, 1.5)
+texture = ExtResource("10_avp7r")
+
+[node name="Forest" type="Node2D" parent="."]
+position = Vector2(-178, 126)
+
+[node name="Tree" parent="Forest" instance=ExtResource("10_kr37e")]
+
+[node name="Tree2" parent="Forest" instance=ExtResource("10_kr37e")]
+position = Vector2(-108, 38)
+
+[node name="Tree3" parent="Forest" instance=ExtResource("10_kr37e")]
+position = Vector2(-156, -5)
+
+[node name="Tree4" parent="Forest" instance=ExtResource("10_kr37e")]
+position = Vector2(-298, 53)
+scale = Vector2(-1, 1)
+
+[node name="Tree5" parent="Forest" instance=ExtResource("10_kr37e")]
+position = Vector2(-396, 19)
+
+[node name="Tree6" parent="Forest" instance=ExtResource("10_kr37e")]
+position = Vector2(-535, 112)
+scale = Vector2(-1, 1)
+
+[node name="Tree7" parent="Forest" instance=ExtResource("10_kr37e")]
+position = Vector2(-653, 205)
+
+[node name="Tree8" parent="Forest" instance=ExtResource("10_kr37e")]
+position = Vector2(-833, 378)
+
+[node name="Tree9" parent="Forest" instance=ExtResource("10_kr37e")]
+position = Vector2(-963, 547)
+
+[node name="Tree10" parent="Forest" instance=ExtResource("10_kr37e")]
+position = Vector2(-1026, 713)
+scale = Vector2(-1, 1)
+
+[node name="Tree24" parent="Forest" instance=ExtResource("10_kr37e")]
+position = Vector2(-1130, 879)
+scale = Vector2(-1, 1)
+
+[node name="Tree26" parent="Forest" instance=ExtResource("10_kr37e")]
+position = Vector2(-780, 1154)
+scale = Vector2(-1, 1)
+
+[node name="Tree27" parent="Forest" instance=ExtResource("10_kr37e")]
+position = Vector2(-670, 1229)
+
+[node name="Tree48" parent="Forest" instance=ExtResource("10_kr37e")]
+position = Vector2(-1026, 1216)
+
+[node name="Tree49" parent="Forest" instance=ExtResource("10_kr37e")]
+position = Vector2(-1107, 1076)
+
+[node name="Tree50" parent="Forest" instance=ExtResource("10_kr37e")]
+position = Vector2(-1192, 1390)
+
+[node name="Tree51" parent="Forest" instance=ExtResource("10_kr37e")]
+position = Vector2(-1078, 1742)
+
+[node name="Tree53" parent="Forest" instance=ExtResource("10_kr37e")]
+position = Vector2(-1264, 1611)
+
+[node name="Tree52" parent="Forest" instance=ExtResource("10_kr37e")]
+position = Vector2(-866, 1831)
+scale = Vector2(-1, 1)
+
+[node name="Tree54" parent="Forest" instance=ExtResource("10_kr37e")]
+position = Vector2(-61, 1916)
+scale = Vector2(-1, 1)
+
+[node name="Tree55" parent="Forest" instance=ExtResource("10_kr37e")]
+position = Vector2(-235, 1971)
+scale = Vector2(-1, 1)
+
+[node name="Tree56" parent="Forest" instance=ExtResource("10_kr37e")]
+position = Vector2(-312, 2052)
+scale = Vector2(-1, 1)
+
+[node name="Tree57" parent="Forest" instance=ExtResource("10_kr37e")]
+position = Vector2(-151, 2141)
+scale = Vector2(-1, 1)
+
+[node name="Tree58" parent="Forest" instance=ExtResource("10_kr37e")]
+position = Vector2(-532, 2060)
+scale = Vector2(-1, 1)
+
+[node name="Tree59" parent="Forest" instance=ExtResource("10_kr37e")]
+position = Vector2(-706, 2221)
+scale = Vector2(-1, 1)
+
+[node name="Tree60" parent="Forest" instance=ExtResource("10_kr37e")]
+position = Vector2(-837, 2153)
+scale = Vector2(-1, 1)
+
+[node name="Tree61" parent="Forest" instance=ExtResource("10_kr37e")]
+position = Vector2(-973, 2094)
+scale = Vector2(-1, 1)
+
+[node name="Tree28" parent="Forest" instance=ExtResource("10_kr37e")]
+position = Vector2(1479, 740)
+
+[node name="Tree39" parent="Forest" instance=ExtResource("10_kr37e")]
+position = Vector2(2229, -34)
+
+[node name="Tree40" parent="Forest" instance=ExtResource("10_kr37e")]
+position = Vector2(2352, 30)
+
+[node name="Tree42" parent="Forest" instance=ExtResource("10_kr37e")]
+position = Vector2(2547, 545)
+scale = Vector2(-1, 1)
+
+[node name="Tree41" parent="Forest" instance=ExtResource("10_kr37e")]
+position = Vector2(1673, 2190)
+rotation = -0.261799
+
+[node name="Tree29" parent="Forest" instance=ExtResource("10_kr37e")]
+position = Vector2(371, 1616)
+
+[node name="Tree30" parent="Forest" instance=ExtResource("10_kr37e")]
+position = Vector2(130, 1808)
+
+[node name="Tree31" parent="Forest" instance=ExtResource("10_kr37e")]
+position = Vector2(237, 1944)
+
+[node name="Tree32" parent="Forest" instance=ExtResource("10_kr37e")]
+position = Vector2(373, 1976)
+
+[node name="Tree33" parent="Forest" instance=ExtResource("10_kr37e")]
+position = Vector2(525, 1949)
+
+[node name="Tree34" parent="Forest" instance=ExtResource("10_kr37e")]
+position = Vector2(672, 1842)
+
+[node name="Tree35" parent="Forest" instance=ExtResource("10_kr37e")]
+position = Vector2(846, 2007)
+scale = Vector2(-1, 1)
+
+[node name="Tree36" parent="Forest" instance=ExtResource("10_kr37e")]
+position = Vector2(1041, 2100)
+scale = Vector2(-1, 1)
+
+[node name="Tree37" parent="Forest" instance=ExtResource("10_kr37e")]
+position = Vector2(1134, 2161)
+scale = Vector2(-1, 1)
+
+[node name="Tree62" parent="Forest" instance=ExtResource("10_kr37e")]
+position = Vector2(1047, 2572)
+scale = Vector2(-1, 1)
+
+[node name="Tree64" parent="Forest" instance=ExtResource("10_kr37e")]
+position = Vector2(980, 2420)
+scale = Vector2(-1, 1)
+
+[node name="Tree65" parent="Forest" instance=ExtResource("10_kr37e")]
+position = Vector2(1005, 2287)
+scale = Vector2(-1, 1)
+
+[node name="Tree63" parent="Forest" instance=ExtResource("10_kr37e")]
+position = Vector2(1640, 2569)
+scale = Vector2(-1, 1)
+
+[node name="Tree66" parent="Forest" instance=ExtResource("10_kr37e")]
+position = Vector2(1710, 2426)
+scale = Vector2(-1, 1)
+
+[node name="Tree67" parent="Forest" instance=ExtResource("10_kr37e")]
+position = Vector2(1758, 2242)
+scale = Vector2(-1, 1)
+
+[node name="Tree68" parent="Forest" instance=ExtResource("10_kr37e")]
+position = Vector2(1187, 3017)
+scale = Vector2(-1, 1)
+
+[node name="Tree73" parent="Forest" instance=ExtResource("10_kr37e")]
+position = Vector2(1042, 2869)
+scale = Vector2(-1, 1)
+
+[node name="Tree74" parent="Forest" instance=ExtResource("10_kr37e")]
+position = Vector2(975, 2714)
+scale = Vector2(-1, 1)
+
+[node name="Tree75" parent="Forest" instance=ExtResource("10_kr37e")]
+position = Vector2(1724, 2719)
+scale = Vector2(-1, 1)
+
+[node name="Tree76" parent="Forest" instance=ExtResource("10_kr37e")]
+position = Vector2(1672, 2869)
+scale = Vector2(-1, 1)
+
+[node name="Tree69" parent="Forest" instance=ExtResource("10_kr37e")]
+position = Vector2(1520, 2976)
+scale = Vector2(-1, 1)
+
+[node name="Tree70" parent="Forest" instance=ExtResource("10_kr37e")]
+position = Vector2(1298, 3046)
+scale = Vector2(-1, 1)
+
+[node name="Tree71" parent="Forest" instance=ExtResource("10_kr37e")]
+position = Vector2(1346, 3100)
+scale = Vector2(-1, 1)
+
+[node name="Tree72" parent="Forest" instance=ExtResource("10_kr37e")]
+position = Vector2(1463, 3027)
+scale = Vector2(-1, 1)
+
+[node name="Tree38" parent="Forest" instance=ExtResource("10_kr37e")]
+position = Vector2(1687, 2062)
+scale = Vector2(-1, 1)
+
+[node name="Tree25" parent="Forest" instance=ExtResource("10_kr37e")]
+position = Vector2(-1119, 583)
+scale = Vector2(-1, 1)
+
+[node name="Tree11" parent="Forest" instance=ExtResource("10_kr37e")]
+position = Vector2(2629, 929)
+
+[node name="Tree12" parent="Forest" instance=ExtResource("10_kr37e")]
+position = Vector2(2705, 676)
+
+[node name="Tree13" parent="Forest" instance=ExtResource("10_kr37e")]
+position = Vector2(2724, 1327)
+
+[node name="Tree14" parent="Forest" instance=ExtResource("10_kr37e")]
+position = Vector2(2582, 1385)
+scale = Vector2(-1, 1)
+
+[node name="Tree15" parent="Forest" instance=ExtResource("10_kr37e")]
+position = Vector2(2484, 1351)
+
+[node name="Tree16" parent="Forest" instance=ExtResource("10_kr37e")]
+position = Vector2(2345, 1444)
+scale = Vector2(-1, 1)
+
+[node name="Tree21" parent="Forest" instance=ExtResource("10_kr37e")]
+position = Vector2(2105, 1898)
+scale = Vector2(-1, 1)
+
+[node name="Tree22" parent="Forest" instance=ExtResource("10_kr37e")]
+position = Vector2(2265, 1770)
+scale = Vector2(-1, 1)
+
+[node name="Tree23" parent="Forest" instance=ExtResource("10_kr37e")]
+position = Vector2(2460, 1706)
+scale = Vector2(-1, 1)
+
+[node name="Tree43" parent="Forest" instance=ExtResource("10_kr37e")]
+position = Vector2(2783, 1063)
+scale = Vector2(-1, 1)
+
+[node name="Tree44" parent="Forest" instance=ExtResource("10_kr37e")]
+position = Vector2(2922, 908)
+scale = Vector2(-1, 1)
+
+[node name="Tree45" parent="Forest" instance=ExtResource("10_kr37e")]
+position = Vector2(2834, 526)
+scale = Vector2(-1, 1)
+
+[node name="Tree46" parent="Forest" instance=ExtResource("10_kr37e")]
+position = Vector2(2524, 205)
+
+[node name="Tree47" parent="Forest" instance=ExtResource("10_kr37e")]
+position = Vector2(2684, 293)
+
+[node name="Tree17" parent="Forest" instance=ExtResource("10_kr37e")]
+position = Vector2(2227, 1537)
+
+[node name="Tree18" parent="Forest" instance=ExtResource("10_kr37e")]
+position = Vector2(2047, 1710)
+
+[node name="Tree19" parent="Forest" instance=ExtResource("10_kr37e")]
+position = Vector2(1917, 1879)
+
+[node name="Tree20" parent="Forest" instance=ExtResource("10_kr37e")]
+position = Vector2(1822, 1978)
+scale = Vector2(-1, 1)
+
+[node name="Tree77" parent="Forest" instance=ExtResource("10_kr37e")]
+position = Vector2(337, -16)
+
+[node name="Tree78" parent="Forest" instance=ExtResource("10_kr37e")]
+position = Vector2(1968, -34)
+
+[node name="Tree79" parent="Forest" instance=ExtResource("10_kr37e")]
+position = Vector2(1352, -33)
+
+[node name="Wall" type="StaticBody2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Wall"]
+position = Vector2(651, -70)
+shape = SubResource("RectangleShape2D_jg8j6")
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Wall"]
+position = Vector2(651, -70)
+polygon = PackedVector2Array(-836, 154, -1688, 417, -2077, 1761, -1563, 2224, -583, 1936, 221, 2050, 179, 2671, 507, 2965, 841, 2754, 863, 2260, 1975, 1162, 1708, 314, 1341, 118, 1808, -137, 3310, 3618, -3035, 3678, -2289, 130)
+
+[node name="Fog" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_left = -1254.0
+offset_top = -748.0
+offset_right = -1214.0
+offset_bottom = -708.0
+
+[node name="FogGradient" type="TextureRect" parent="Fog"]
+z_index = -7
+layout_mode = 0
+offset_left = -93.0
+offset_top = -26.0
+offset_right = 628.0
+offset_bottom = 1785.0
+rotation = 0.261799
+texture = SubResource("GradientTexture1D_keqcp")
+
+[node name="FogGradient2" type="TextureRect" parent="Fog"]
+z_index = -7
+layout_mode = 0
+offset_left = -617.0
+offset_top = 765.0
+offset_right = 104.0
+offset_bottom = 2576.0
+texture = SubResource("GradientTexture1D_keqcp")
+
+[node name="FogGradient3" type="TextureRect" parent="Fog"]
+z_index = -7
+layout_mode = 0
+offset_left = -935.0
+offset_top = 2293.0
+offset_right = -214.0
+offset_bottom = 4104.0
+rotation = -0.785397
+texture = SubResource("GradientTexture1D_keqcp")
+
+[node name="FogGradient4" type="TextureRect" parent="Fog"]
+z_index = -7
+layout_mode = 0
+offset_left = 477.0
+offset_top = 3358.0
+offset_right = 1198.0
+offset_bottom = 4712.0
+rotation = -1.57079
+texture = SubResource("GradientTexture1D_keqcp")
+
+[node name="FogGradient5" type="TextureRect" parent="Fog"]
+z_index = -7
+layout_mode = 0
+offset_left = 1504.0
+offset_top = 2746.0
+offset_right = 2176.0
+offset_bottom = 4100.0
+texture = SubResource("GradientTexture1D_keqcp")
+
+[node name="FogGradient6" type="TextureRect" parent="Fog"]
+z_index = -7
+layout_mode = 0
+offset_left = 3312.0
+offset_top = 4090.0
+offset_right = 3984.0
+offset_bottom = 5444.0
+rotation = -3.14159
+texture = SubResource("GradientTexture1D_keqcp")
+
+[node name="FogGradient7" type="TextureRect" parent="Fog"]
+z_index = -7
+layout_mode = 0
+offset_left = 3350.0
+offset_top = 3241.0
+offset_right = 4022.0
+offset_bottom = 4595.0
+rotation = -2.35619
+texture = SubResource("GradientTexture1D_keqcp")
+
+[node name="FogGradient8" type="TextureRect" parent="Fog"]
+z_index = -7
+layout_mode = 0
+offset_left = 4452.0
+offset_top = 2105.0
+offset_right = 5124.0
+offset_bottom = 3459.0
+rotation = -3.14159
+texture = SubResource("GradientTexture1D_keqcp")
+
+[node name="FogGradient9" type="TextureRect" parent="Fog"]
+z_index = -7
+layout_mode = 0
+offset_left = 4501.0
+offset_top = 831.0
+offset_right = 5173.0
+offset_bottom = 2081.0
+rotation = -3.66519
+texture = SubResource("GradientTexture1D_keqcp")
+
+[node name="FogGradient10" type="TextureRect" parent="Fog"]
+z_index = -7
+layout_mode = 0
+offset_left = 3859.0
+offset_top = -535.0
+offset_right = 5020.0
+offset_bottom = 3370.0
+rotation = -4.71238
+texture = SubResource("GradientTexture1D_keqcp")
+
+[node name="Spikered" type="Sprite2D" parent="."]
+position = Vector2(865, 1284)
+texture = ExtResource("13_v0lxq")
+
+[node name="Spikered2" type="Sprite2D" parent="."]
+position = Vector2(1253, 1569)
+scale = Vector2(-0.7, 0.7)
+texture = ExtResource("13_v0lxq")
+
+[node name="Limboman" type="Sprite2D" parent="."]
+position = Vector2(494, 698)
+texture = ExtResource("14_jrrvb")
+
+[node name="Limboman4" type="Sprite2D" parent="."]
+position = Vector2(-164, 175)
+texture = ExtResource("14_jrrvb")
+
+[node name="Limboman2" type="Sprite2D" parent="."]
+position = Vector2(457, 708)
+scale = Vector2(-0.8, 0.8)
+texture = ExtResource("14_jrrvb")
+
+[node name="Limboman3" type="Sprite2D" parent="."]
+position = Vector2(1359, 886)
+scale = Vector2(-0.8, 0.8)
+texture = ExtResource("14_jrrvb")
+
+[node name="DraggablePerson" parent="." instance=ExtResource("12_ir8n6")]
+position = Vector2(-1071, 830)
+
+[node name="UnbrokenPillar5" parent="." instance=ExtResource("8_vlx5l")]
+position = Vector2(973, 918)
+scale = Vector2(-1, 1)
+
+[node name="UnbrokenPillar6" parent="." instance=ExtResource("8_vlx5l")]
+position = Vector2(1270, 1126)
+
+[node name="UnbrokenPillar7" parent="." instance=ExtResource("8_vlx5l")]
+position = Vector2(1388, 1447)
+
+[node name="UnbrokenPillar8" parent="." instance=ExtResource("8_vlx5l")]
+position = Vector2(582, 925)
+
+[node name="UnbrokenPillar9" parent="." instance=ExtResource("8_vlx5l")]
+position = Vector2(805, 1125)
+scale = Vector2(-1, 1)
+
+[node name="BrokenPillar3" parent="." instance=ExtResource("9_kl2fg")]
+position = Vector2(983, 1435)
+
+[node name="BlockCircle" type="Node" parent="."]
+
+[node name="DraggableBlock" parent="BlockCircle" instance=ExtResource("15_jqp6s")]
+position = Vector2(-503, 617)
+
+[node name="DraggableBlock2" parent="BlockCircle" instance=ExtResource("15_jqp6s")]
+position = Vector2(-407, 757)
+
+[node name="DraggableBlock3" parent="BlockCircle" instance=ExtResource("15_jqp6s")]
+position = Vector2(-224, 752)
+
+[node name="DraggableBlock4" parent="BlockCircle" instance=ExtResource("15_jqp6s")]
+position = Vector2(-411, 478)
+
+[node name="DraggableBlock5" parent="BlockCircle" instance=ExtResource("15_jqp6s")]
+position = Vector2(-224, 476)
+
+[node name="DraggableBlock6" parent="BlockCircle" instance=ExtResource("15_jqp6s")]
+position = Vector2(-121, 620)
+
+[node name="DraggableBlock7" parent="BlockCircle" instance=ExtResource("16_3vh6r")]
+position = Vector2(-487, 707)
+
+[node name="DraggableBlock8" parent="BlockCircle" instance=ExtResource("16_3vh6r")]
+position = Vector2(-485, 539)
+
+[node name="DraggableBlock9" parent="BlockCircle" instance=ExtResource("16_3vh6r")]
+position = Vector2(-319, 451)
+
+[node name="DraggableBlock10" parent="BlockCircle" instance=ExtResource("16_3vh6r")]
+position = Vector2(-316, 780)
+
+[node name="DraggableBlock11" parent="BlockCircle" instance=ExtResource("16_3vh6r")]
+position = Vector2(-143, 708)
+
+[node name="DraggableBlock12" parent="BlockCircle" instance=ExtResource("16_3vh6r")]
+position = Vector2(-143, 540)
+
+[node name="DraggablePerson" parent="BlockCircle" instance=ExtResource("12_ir8n6")]
+position = Vector2(-326, 615)
+
+[node name="DraggablePerson2" parent="BlockCircle" instance=ExtResource("12_ir8n6")]
+position = Vector2(894, 1321)
+
+[node name="DraggablePerson3" parent="BlockCircle" instance=ExtResource("12_ir8n6")]
+position = Vector2(1841, 259)
+
+[node name="cage" parent="." instance=ExtResource("17_s833d")]
+unique_name_in_owner = true
+z_index = -1
+y_sort_enabled = true
+position = Vector2(1154, 2361)
+
+[node name="BeastArea" type="Area2D" parent="cage"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="cage/BeastArea"]
+position = Vector2(14.5, 9)
+shape = SubResource("RectangleShape2D_jgpgh")
+
+[node name="DraggableKey" parent="." instance=ExtResource("18_b13u3")]
+unique_name_in_owner = true
+z_index = 11
+position = Vector2(1155, 2297)
+collision_mask = 4
+pickable = false
+
+[connection signal="gateOpened" from="GATE" to="." method="_on_gate_gate_opened"]
+[connection signal="area_entered" from="cage/BeastArea" to="." method="_on_beast_area_area_entered"]
