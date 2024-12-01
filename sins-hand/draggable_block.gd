@@ -7,6 +7,7 @@ signal clicked
 var held = false
 var inHandArea = false			
 var mouse_speed = 8.0
+
 func pickup():
 	if !pickable:
 		return
@@ -68,5 +69,15 @@ func _on_area_2d_large_area_exited(area):
 
 func _on_area_2d_large_area_entered(area):
 	if area.get_name() =="PlayerArea":
-		$BumpIntoObject.pitch_scale = randf_range(0.85, 1.15)
-		$BumpIntoObject.play()
+		var parent_level = area.get_parent().parent_level
+		
+		if parent_level.level == 0:
+			$BumpVoid.pitch_scale = randf_range(0.85, 1.15)
+			$BumpVoid.play()
+			
+		elif parent_level.level == 1:
+			$BumpLimbo.pitch_scale = randf_range(0.85, 1.15)
+			$BumpLimbo.play()
+			
+		#$BumpIntoObject.pitch_scale = randf_range(0.85, 1.15)
+		#$BumpIntoObject.play()

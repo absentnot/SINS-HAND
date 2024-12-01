@@ -11,6 +11,7 @@ func _process(delta):
 	pass
 
 func eat():
+	$BeastChew.play()
 	var tw = create_tween()
 	tw.tween_property($Sprite2D, "scale", Vector2(1.1, 0.9), 0.2)
 	tw.tween_property($Sprite2D, "scale", Vector2(1.2, 0.7), 0.2)
@@ -23,6 +24,7 @@ func eat():
 	tw.tween_callback(finish_eating)
 
 func finish_eating():
+	$BeastBurp.play()
 	$Sprite2D.texture = load("res://assets/cage-noeyes.png")
 	emit_signal("finishEating")
 

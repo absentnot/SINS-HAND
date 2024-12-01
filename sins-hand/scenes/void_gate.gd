@@ -6,7 +6,7 @@ signal gateOpened
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	$PortalHum.volume_db = 0
+	$PortalHum.volume_db = 5
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -24,23 +24,23 @@ func _on_gate_inner_area_area_entered(area):
 	if area.get_name() == "PlayerArea" and is_open:
 		var tw = create_tween()
 		tw.tween_property($PortalHum, "volume_db", -60, 4.0)
-
-
+		$PortalTransitionVoid.play()
+		
 func _on_gate_inner_area_area_exited(area):
 	if area.get_name() == "PlayerArea" and is_open:
 		var tw = create_tween()
 		tw.tween_property($PortalHum, "volume_db", 17, 1.0)
-		
 
 func open():
 	if !is_open:
 		emit_signal("gateOpened")
 		
 		is_open = true
+		$KeyOpenVoid.play()
 		$Gate/GateBG.visible = true
 		$"Gate-Inverted".visible = true
 		$ColorRect.visible = true
-		$PortalHum.volume_db = 17
+		$PortalHum.volume_db = 14
 
 
 func _on_animated_sprite_2d_animation_finished():

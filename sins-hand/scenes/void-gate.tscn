@@ -1,4 +1,4 @@
-[gd_scene load_steps=33 format=3 uid="uid://kfhvj854jqqd"]
+[gd_scene load_steps=35 format=3 uid="uid://kfhvj854jqqd"]
 
 [ext_resource type="Script" path="res://scenes/void_gate.gd" id="1_wy6jb"]
 [ext_resource type="Texture2D" uid="uid://bdg7pay14i58u" path="res://assets/gate.png" id="2_f3owe"]
@@ -10,6 +10,8 @@
 [ext_resource type="Texture2D" uid="uid://dkoujeliu1xqx" path="res://assets/gate-open-spritesheet.png" id="7_gx80g"]
 [ext_resource type="Texture2D" uid="uid://gdqv7yjih3fd" path="res://assets/gate-open-spritesheet-inverted.png" id="9_00hih"]
 [ext_resource type="AudioStream" uid="uid://dps2c7fle1skd" path="res://audio/sfx/Select_Limbo_SH.ogg" id="9_sf8vi"]
+[ext_resource type="AudioStream" uid="uid://lwcc11cgrwk6" path="res://audio/sfx/PortalTransition_Void_SH.ogg" id="11_hlpgx"]
+[ext_resource type="AudioStream" uid="uid://bsjh67m5b11at" path="res://audio/sfx/Key_Void_SH.ogg" id="12_6xgk1"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_1f4pq"]
 shader = ExtResource("3_d08c8")
@@ -225,6 +227,14 @@ volume_db = -10.0
 [node name="CollisionShape2D" type="CollisionShape2D" parent="BehindGateArea"]
 position = Vector2(1, -64)
 shape = SubResource("RectangleShape2D_10whr")
+
+[node name="PortalTransitionVoid" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("11_hlpgx")
+volume_db = -7.94
+
+[node name="KeyOpenVoid" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("12_6xgk1")
+volume_db = -6.892
 
 [connection signal="area_entered" from="GateArea" to="." method="_on_gate_area_area_entered"]
 [connection signal="area_entered" from="GateInnerArea" to="." method="_on_gate_inner_area_area_entered"]

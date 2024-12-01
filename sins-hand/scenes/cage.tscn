@@ -1,7 +1,11 @@
-[gd_scene load_steps=6 format=3 uid="uid://pvbtem4jsufi"]
+[gd_scene load_steps=10 format=3 uid="uid://pvbtem4jsufi"]
 
 [ext_resource type="Script" path="res://scenes/cage.gd" id="1_0px8l"]
 [ext_resource type="Texture2D" uid="uid://dyclvem3h7yoc" path="res://assets/cage-eyes.png" id="1_x5liu"]
+[ext_resource type="AudioStream" uid="uid://iik0bol0eito" path="res://audio/sfx/BeastBurp_Limbo_SH.ogg" id="3_spedi"]
+[ext_resource type="AudioStream" uid="uid://ca3w4hdfbggc3" path="res://audio/sfx/BeastChew_Limbo_SH.ogg" id="4_uwng4"]
+[ext_resource type="AudioStream" uid="uid://bnxg27tcuh8k7" path="res://audio/sfx/BeastGrowl_Limbo_SH.ogg" id="5_in1pd"]
+[ext_resource type="AudioStream" uid="uid://brr1hdbqvyyu0" path="res://audio/sfx/Beast_Limbo_SH.ogg" id="6_eog88"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ylsx3"]
 size = Vector2(112, 95)
@@ -37,5 +41,21 @@ shape = SubResource("RectangleShape2D_u2wxv")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="EatArea"]
 position = Vector2(0.5, -3.5)
 shape = SubResource("RectangleShape2D_fcw18")
+
+[node name="BeastBurp" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("3_spedi")
+
+[node name="BeastChew" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("4_uwng4")
+
+[node name="BeastLimbo" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("6_eog88")
+autoplay = true
+max_distance = 500.0
+attenuation = 4.0
+
+[node name="BeastGrowl" type="AudioStreamPlayer2D" parent="."]
+unique_name_in_owner = true
+stream = ExtResource("5_in1pd")
 
 [connection signal="area_entered" from="EatArea" to="." method="_on_eat_area_area_entered"]

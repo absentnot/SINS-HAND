@@ -33,6 +33,7 @@ func _on_gate_gate_opened():
 
 func _on_beast_area_area_entered(area):
 	if area.get_name() == "HandArea" and !beastSatisfied:
+		%BeastGrowl.play()
 		var tw = create_tween()
 		tw.tween_property($cage, "scale", Vector2(1.2, 1.2), 0.5)
 		tw.tween_property($cage, "scale", Vector2(1.0, 1.0), 0.1)

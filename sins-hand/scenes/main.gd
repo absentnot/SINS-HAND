@@ -14,9 +14,14 @@ func _unhandled_input(event):
 		held_object = null
 
 func _ready():
+	$Music.volume_db = -60
 	updatePickable()
 	updateGate()
 	current_level.get_tree().paused = true
+	var tw = create_tween()
+	tw.tween_property($Music, "volume_db", -30, 3.0)
+	$Music.play()
+
 
 func updatePickable():
 	for node in get_tree().get_nodes_in_group("pickable"):
@@ -41,7 +46,7 @@ func nextLevel():
 	var nextLevel_inst = levels[level].instantiate()
 	current_level = nextLevel_inst
 	%MainViewport.add_child(current_level)
-	
+		
 	if level == 1:
 		$Music.get_stream_playback().switch_to_clip_by_name("Limbo Music Loop")	
 		
@@ -63,11 +68,11 @@ func whiteTransition():
 	print("TRANSITION")
 	%WhiteTransition.modulate.a = 0.0
 	
-	if level == 0:
-		$Atmosphere.get_stream_playback().switch_to_clip_by_name("Limbo Atmosphere")
+	#if level == 0:
+		#$Atmosphere.get_stream_playback().switch_to_clip_by_name("Limbo Atmosphere")
 	
 	if level == 1:
-		$Atmosphere.get_stream_playback().switch_to_clip_by_name("Void Atmosphere")
+		$Atmosphere.get_stream_playback().switch_to_clip_by_name("Limbo Atmosphere")
 		
 	var tw = create_tween()
 	tw.tween_property(%WhiteTransition, "modulate:a", 1.0, 1.5)
@@ -79,3 +84,6 @@ func _on_hud_start_game():
 	blackTransition()
 	var tw = create_tween()
 	tw.tween_property($Atmosphere, "volume_db", 0, 1.0)
+	$Music.get_stream_playback().switch_to_clip_by_name("Void Silence")
+	$Atmosphere.get_stream_playback().switch_to_clip_by_name("Void Atmosphere")
+	
